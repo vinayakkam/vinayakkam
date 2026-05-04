@@ -1,16 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=5865F2&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=38&desc=Discord%20Bot%20Dev%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=58&descColor=ffffffcc&animation=fadeIn" width="100%"/>
-
-</div>
-
-<div align="center">
-
-```
-◈ discord bot developer  ◈  python enthusiast  ◈  building OLIT  ◈
-```
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&pause=1000&color=5865F2&center=true&vCenter=true&width=600&lines=Building+Discord+bots+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML%2FCSS;Founder+of+OLIT+Technologies;Always+shipping+something+new+%F0%9F%9A%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=32&pause=1000&color=5865F2&center=true&vCenter=true&width=700&lines=Hey+%F0%9F%91%8B+I'm+Vinayak+Kamath;Discord+Bot+Developer+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML%2FCSS;Founder+of+OLIT+Technologies+%F0%9F%8C%90)](https://git.io/typing-svg)
 
 <br/>
 
@@ -24,9 +14,7 @@
 
 ---
 
-<img align="right" width="340" src="https://github-readme-stats.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&rank_icon=github"/>
-
-### 👾 About Me
+## 👾 About Me
 
 ```python
 # profile.py
@@ -35,24 +23,20 @@ me = {
   "handle"   : "@vinayakkam",
   "specialty": "Discord Bots",
   "project"  : "OLIT Technologies",
-  "stack"    : ["Python", "Java", "HTML"],
+  "stack"    : ["Python", "Java", "HTML", "CSS"],
   "status"   : "always shipping 🚀",
 }
 ```
 
-- 🤖 Building **Discord bots** with Python
-- 🌐 Founder of **[OLIT Technologies](https://www.olittechnologies.co.in)**
-- 🔧 Love automation & bot architecture
+- 🤖 Building **Discord bots** with Python & discord.py
+- 🌐 Founder of **[OLIT Technologies](https://www.olittechnologies.co.in)** — my Discord dev project
+- 🔧 Love automation, bot architecture & clean code
 - ☕ Java for the OOP brain exercise
 - 📬 **vinayakkamath200@gmail.com**
-
-<br clear="right"/>
 
 ---
 
 ## 🤖 Discord Bot Development
-
-<div align="center">
 
 | Feature | Details |
 |---|---|
@@ -62,15 +46,11 @@ me = {
 | 📊 Server Utilities | Stats, welcome messages, logging, embeds |
 | 🔁 Event Handlers | Real-time listeners, scheduled tasks, webhooks |
 
-</div>
-
 > 💡 **Stack:** `discord.py` · `Python 3.x` · `Slash Commands API` · `Async/Await`
 
 ---
 
 ## 🌐 OLIT Technologies
-
-<div align="center">
 
 ```
 ╔══════════════════════════════════════════╗
@@ -80,8 +60,6 @@ me = {
 ╚══════════════════════════════════════════╝
 ```
 
-</div>
-
 My personal Discord development project — where I build, experiment, and ship bots and tools for communities. Turning ideas into working, deployed products.
 
 ---
@@ -90,14 +68,17 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=5865F2&text_color=ffffff&langs_count=6"/>
-<img height="160" src="https://github-readme-streak-stats.herokuapp.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0d1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2"/>
+[![GitHub Streak](https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2)](https://git.io/streak-stats)
+
+<br/>
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6)](https://github.com/vinayakkam)
 
 </div>
 
 ---
 
-## 🛠️ Full Tech Stack
+## 🛠️ Tech Stack
 
 <div align="center">
 
@@ -124,7 +105,8 @@ My personal Discord development project — where I build, experiment, and ship 
 <div align="center">
 
 [![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath200%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath200@gmail.com)
-[![Website](https://img.shields.io/badge/OLIT%20Technologies-www.olittechnologies.co.in-1D9E75?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.olittechnologies.co.in)
+
+[![Website](https://img.shields.io/badge/OLIT%20Technologies-olittechnologies.co.in-1D9E75?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.olittechnologies.co.in)
 
 </div>
 
@@ -132,6 +114,6 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=5865F2&height=100&section=footer" width="100%"/>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=13&pause=3000&color=5865F2&center=true&vCenter=true&width=500&lines=%E2%98%85+explore+my+repos+%C2%B7+let's+build+something+together)](https://git.io/typing-svg)
 
 </div>
