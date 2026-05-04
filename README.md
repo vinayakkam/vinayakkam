@@ -107,7 +107,7 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath200%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath200@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath2006%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath2006@gmail.com)
 
 [![Website](https://img.shields.io/badge/OLIT%20Technologies-olittechnologies.co.in-1D9E75?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.olittechnologies.co.in)
 
