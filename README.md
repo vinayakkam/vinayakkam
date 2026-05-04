@@ -1,6 +1,8 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:5865F2,100:7289DA&height=180&section=header&text=Vinayak%20Kamath&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Discord%20Bot%20Dev%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=58&descColor=ffffffcc" width="100%"/>
+
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=32&pause=1000&color=5865F2&center=true&vCenter=true&width=700&lines=Hey+%F0%9F%91%8B+I'm+Vinayak+Kamath;Discord+Bot+Developer+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML%2FCSS;Founder+of+OLIT+Technologies+%F0%9F%8C%90)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&pause=1000&color=5865F2&center=true&vCenter=true&width=600&lines=Building+Discord+bots+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML%2FCSS;Founder+of+OLIT+Technologies;Always+shipping+something+new+%F0%9F%9A%80)](https://git.io/typing-svg)
 
 <br/>
 
@@ -117,3 +119,5 @@ My personal Discord development project — where I build, experiment, and ship 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=13&pause=3000&color=5865F2&center=true&vCenter=true&width=500&lines=%E2%98%85+explore+my+repos+%C2%B7+let's+build+something+together)](https://git.io/typing-svg)
 
 </div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7289DA,100:5865F2&height=120&section=footer" width="100%"/>
