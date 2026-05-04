@@ -34,7 +34,7 @@ me = {
 - 🌐 Founder of **[OLIT Technologies](https://www.olittechnologies.co.in)** — my Discord dev project
 - 🔧 Love automation, bot architecture & clean code
 - ☕ Java for the OOP brain exercise
-- 📬 **vinayakkamath200@gmail.com**
+- 📬 **vinayakkamath2006@gmail.com**
 
 ---
 
@@ -62,7 +62,7 @@ me = {
 ╚══════════════════════════════════════════╝
 ```
 
-My personal Discord development project — where I build, experiment, and ship bots and tools for communities. Turning ideas into working, deployed products.
+My personal Discord development project — where I build, experiment, and ship bots and tools for communities.
 
 ---
 
@@ -70,11 +70,12 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2)](https://git.io/streak-stats)
-
-<br/>
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6)](https://github.com/vinayakkam)
+<a href="https://git.io/streak-stats">
+  <img width="49%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2"/>
+</a>
+<a href="https://github.com/vinayakkam">
+  <img width="49%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6"/>
+</a>
 
 </div>
 
