@@ -71,16 +71,16 @@ My personal Discord development project — where I build, experiment, and ship 
 <div align="center">
 
 <a href="https://github.com/vinayakkam">
-  <img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true"/>
+  <img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&cache_seconds=3600&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true"/>
 </a>
 <a href="https://git.io/streak-stats">
-  <img width="49%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2"/>
+  <img width="49%" src="https://streak-stats.demolab.com?user=vinayakkam&cache_seconds=3600&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2"/>
 </a>
 
 <br/><br/>
 
 <a href="https://github.com/vinayakkam">
-  <img width="50%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6"/>
+  <img width="50%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&cache_seconds=3600&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6"/>
 </a>
 
 </div>
