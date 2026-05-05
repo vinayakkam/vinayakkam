@@ -45,6 +45,8 @@ me = {
 
 </div>
 
+<div align="center">
+
 | 🔧 Feature | 📋 Details |
 |---|---|
 | ⚡ **Slash Commands** | Modern `/commands` with full Discord interaction support |
@@ -53,6 +55,8 @@ me = {
 | 📊 **Server Utilities** | Welcome messages, logging, stats, embeds |
 | 🔁 **Event Handlers** | Real-time listeners, scheduled tasks, webhooks |
 | 🎮 **Fun Modules** | Games, polls, giveaways & interactive commands |
+
+</div>
 
 > **Stack:** `discord.py` &nbsp;·&nbsp; `Python 3.x` &nbsp;·&nbsp; `Async/Await` &nbsp;·&nbsp; `Slash Commands API`
 
