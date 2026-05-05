@@ -39,11 +39,7 @@ me = {
 
 <div align="center">
 
-```
- ╔─────────────────────────────────────────────────────╗
- ║  🟢 BOT STATUS: ONLINE          discord.py + Python  ║
- ╚─────────────────────────────────────────────────────╝
-```
+[![BOT STATUS](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=57F287&center=true&vCenter=true&width=400&lines=🟢+BOT+STATUS%3A+ONLINE;discord.py+%2B+Python+3.x;Slash+Commands+%7C+Async%2FAwait;Always+on+%E2%80%94+24%2F7+uptime+✅)](https://git.io/typing-svg)
 
 </div>
 
