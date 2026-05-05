@@ -8,8 +8,6 @@
 
 ---
 
-<img align="right" width="380" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=3600"/>
-
 ### 👾 About Me
 
 ```python
@@ -25,13 +23,17 @@ me = {
 }
 ```
 
+<div align="center">
+<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=3600"/>
+</div>
+
+<br/>
+
 🤖 I build **Discord bots** — moderation, automation, utilities, the works  
 🌐 Founder of **[OLIT Technologies](https://www.olittechnologies.co.in)** — my Discord dev project  
 🔧 Love clean code, smart architecture & bot ecosystems  
 ☕ Java for OOP brain training  
-📬 Reach me at **vinayakkamath200@gmail.com**
-
-<br clear="right"/>
+📬 Reach me at **vinayakkamath2006@gmail.com**
 
 ---
 
@@ -120,7 +122,7 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath200%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath200@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath2006%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath2006@gmail.com)
 [![Website](https://img.shields.io/badge/🌐%20OLIT%20Technologies-olittechnologies.co.in-1D9E75?style=for-the-badge)](https://www.olittechnologies.co.in)
 
 </div>
