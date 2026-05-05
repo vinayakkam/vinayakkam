@@ -82,8 +82,22 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true&hide_rank=true&cache_seconds=3600"/>
+<img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true&cache_seconds=3600"/>
 <img width="49%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6&cache_seconds=3600"/>
+
+</div>
+
+---
+
+## 🐍 Contribution Snake
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake.svg"/>
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake.svg"/>
+</picture>
 
 </div>
 
@@ -116,7 +130,7 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath2006%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath2006@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath200%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath200@gmail.com)
 [![Website](https://img.shields.io/badge/🌐%20OLIT%20Technologies-olittechnologies.co.in-1D9E75?style=for-the-badge)](https://www.olittechnologies.co.in)
 
 </div>
