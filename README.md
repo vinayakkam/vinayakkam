@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:5865F2,100:7289DA&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=55&descColor=ffffffcc&descSize=18" width="100%"/>
+[<img src="https://capsule-render.vercel.app/api?type=waving&color=0:5865F2,100:7289DA&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=55&descColor=ffffffcc&descSize=18" width="100%"/>
 
 <div align="center">
 
@@ -140,3 +140,4 @@ My personal Discord development project — where I build, experiment, and ship 
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7289DA,100:5865F2&height=130&section=footer" width="100%"/>
+](https://github.com/vinayakkam/my-discord-bot)
