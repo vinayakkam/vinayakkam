@@ -60,13 +60,7 @@ me = {
 
 <div align="center">
 
-```
- ╔══════════════════════════════════════════════════╗
- ║              OLIT  TECHNOLOGIES                  ║
- ║      Discord Development  ·  Bot Ecosystem       ║
- ║         🔗 www.olittechnologies.co.in            ║
- ╚══════════════════════════════════════════════════╝
-```
+[![OLIT](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=1D9E75&center=true&vCenter=true&width=500&lines=🌐+OLIT+TECHNOLOGIES;Discord+Development+·+Bot+Ecosystem;🔗+www.olittechnologies.co.in;Building+bots+%26+tools+for+communities+🚀)](https://git.io/typing-svg)
 
 </div>
 
