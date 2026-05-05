@@ -1,4 +1,4 @@
-[<img src="https://capsule-render.vercel.app/api?type=waving&color=0:5865F2,100:7289DA&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=55&descColor=ffffffcc&descSize=18" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:5865F2,100:7289DA&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=55&descColor=ffffffcc&descSize=18" width="100%"/>
 
 <div align="center">
 
@@ -37,28 +37,45 @@ me = {
 
 ---
 
-## 🤖 Discord Bot Development
+## 🤖 OLIT Bot
 
 <div align="center">
 
-[![BOT STATUS](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=57F287&center=true&vCenter=true&width=400&lines=🟢+BOT+STATUS%3A+ONLINE;discord.py+%2B+Python+3.x;Slash+Commands+%7C+Async%2FAwait;Always+on+%E2%80%94+24%2F7+uptime+✅)](https://git.io/typing-svg)
+[![BOT STATUS](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=57F287&center=true&vCenter=true&width=500&lines=🟢+OLIT+BOT+STATUS%3A+ONLINE;Advanced+Multifunctional+Discord+Bot;Games+%7C+Leaderboards+%7C+Galaxy+Explorer;discord.py+2.4%2B+%7C+Python+3.9%2B+%7C+24%2F7+✅)](https://git.io/typing-svg)
 
 </div>
 
+> 🤖 **OLIT Bot** is an advanced multifunctional Discord bot built for entertainment, automation & community engagement — developed and owned by **OLIT Technologies**.
+
 <div align="center">
 
-| 🔧 Feature | 📋 Details |
+**🎮 Games & Interactivity**
+
+| Game | Description |
 |---|---|
-| ⚡ **Slash Commands** | Modern `/commands` with full Discord interaction support |
-| 🛡️ **Auto-Moderation** | Spam filter, word filter, role-based permissions |
-| 🎭 **Role Management** | Auto-roles, reaction roles, tiered permission systems |
-| 📊 **Server Utilities** | Welcome messages, logging, stats, embeds |
-| 🔁 **Event Handlers** | Real-time listeners, scheduled tasks, webhooks |
-| 🎮 **Fun Modules** | Games, polls, giveaways & interactive commands |
+| 🪨 **Rock Paper Scissors** | Play via interactive buttons and earn points |
+| 🪙 **Coin Flip** | Guess heads or tails for rewards |
+| 🎲 **Dice Roll** | Roll and test your luck |
+| 🔢 **Number Guess** | Guess the correct number via modal input |
+| 🧮 **Math Quiz** | Solve random math questions for points |
+| 🔤 **Word Unscramble** | Unscramble words by difficulty level |
+| 🎓 **Space Trivia** | Test your knowledge of space & science |
+| 🥢 **Booster Catch** | Interactive SpaceX booster catching simulation |
+| 🌌 **Galaxy Explorer** | Procedurally generated galaxy & solar system exploration |
+
+**🏆 More Features**
+
+| Feature | Description |
+|---|---|
+| 🏅 **Leaderboards** | Per-server score tracking with auto Leader role assignment |
+| 👋 **Welcome System** | Embedded welcome messages with avatars & member count |
+| 😎 **Emoji Reactions** | Keyword-triggered custom emoji reaction system |
+| ⚡ **Slash + Prefix** | Supports both `/commands` and `!commands` |
+| 🌐 **Multi-server** | Fully configurable per Discord guild |
 
 </div>
 
-> **Stack:** `discord.py` &nbsp;·&nbsp; `Python 3.x` &nbsp;·&nbsp; `Async/Await` &nbsp;·&nbsp; `Slash Commands API`
+> **Stack:** `discord.py 2.4+` &nbsp;·&nbsp; `Python 3.9+` &nbsp;·&nbsp; `Async/Await` &nbsp;·&nbsp; `Docker` &nbsp;·&nbsp; `Slash Commands API`
 
 ---
 
@@ -140,4 +157,3 @@ My personal Discord development project — where I build, experiment, and ship 
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7289DA,100:5865F2&height=130&section=footer" width="100%"/>
-](https://github.com/vinayakkam/my-discord-bot)
