@@ -24,7 +24,7 @@ me = {
 ```
 
 <div align="center">
-<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=10"/>
+<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=3600"/>
 </div>
 
 <br/>
