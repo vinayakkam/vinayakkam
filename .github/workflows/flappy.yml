@@ -21,7 +21,7 @@ jobs:
         run: |
           cat > gen.py << 'PYEOF'
           import os, math, random
-          random.seed(42)
+          random.seed(77)
           W, H = 900, 220
           GROUND_H = 30
           SKY_H = H - GROUND_H
@@ -33,68 +33,73 @@ jobs:
           BG_SKY = "#0d1117"
           BG_GROUND = "#161b22"
           GROUND_LINE = "#30363d"
-          GAP = 68
-          PIPE_W = 40
-          CAP_H = 14
+          GAP = 75
+          PIPE_W = 42
+          CAP_H = 15
           CAP_EXTRA = 10
-          PLAY_DUR = 6
-          CRASH_T = 4.2
-          TOTAL_DUR = PLAY_DUR + 3
+          DUR = 7.0
           NUM_PIPES = 6
-          PIPE_CYCLE = W / NUM_PIPES
-          gap_ys = [45, 95, 50, 105, 40, 90]
-          stars = "".join([f'<circle cx="{random.randint(5,W-5)}" cy="{random.randint(5,SKY_H-5)}" r="{random.uniform(0.6,1.4):.1f}" fill="white" opacity="{random.uniform(0.2,0.7):.1f}"/>' for _ in range(55)])
+          BIRD_X = 155
+          pipe_speed = (W + PIPE_W + 20) / DUR
+          gap_centers = [80, 125, 65, 130, 75, 115]
+          cross_times = []
+          for i in range(NUM_PIPES):
+              t_cross = (i * DUR / NUM_PIPES + (W - BIRD_X) / pipe_speed) % DUR
+              cross_times.append(t_cross)
+          pipe_order = sorted(range(NUM_PIPES), key=lambda i: cross_times[i])
+          sorted_kf = [(cross_times[i], gap_centers[i]) for i in pipe_order]
+          t_last, y_last = sorted_kf[-1]
+          t_first, y_first = sorted_kf[0]
+          wrap_gap = (t_first + DUR - t_last)
+          if wrap_gap > 0:
+              frac = (DUR - t_last) / wrap_gap
+              frac_cos = (1 - math.cos(frac * math.pi)) / 2
+              y_at_zero = y_last + (y_first - y_last) * frac_cos
+          else:
+              y_at_zero = y_first
+          full_kf = [(0.0, y_at_zero)] + sorted_kf + [(DUR, y_at_zero)]
+          STEPS = 180
+          translate_vals = []
+          rotate_vals = []
+          key_times_list = []
+          def cosine_interp(t, kf_list):
+              for i in range(len(kf_list) - 1):
+                  t0, y0 = kf_list[i]
+                  t1, y1 = kf_list[i + 1]
+                  if t0 <= t <= t1:
+                      if t1 == t0:
+                          return y0
+                      frac = (t - t0) / (t1 - t0)
+                      frac_cos = (1 - math.cos(frac * math.pi)) / 2
+                      return y0 + (y1 - y0) * frac_cos
+              return kf_list[-1][1]
+          for i in range(STEPS + 1):
+              t = i / STEPS * DUR
+              y = cosine_interp(t, full_kf)
+              translate_vals.append(f"{BIRD_X} {y:.2f}")
+              key_times_list.append(f"{i/STEPS:.5f}")
+              eps = DUR / STEPS * 0.5
+              y_fwd = cosine_interp(min(t + eps, DUR), full_kf)
+              y_bwd = cosine_interp(max(t - eps, 0), full_kf)
+              dy = (y_fwd - y_bwd) / (2 * eps)
+              rot = max(-38, min(38, dy * 0.55))
+              rotate_vals.append(f"{rot:.2f}")
+          stars = "".join([f'<circle cx="{random.randint(5,W-5)}" cy="{random.randint(5,SKY_H-5)}" r="{random.uniform(0.5,1.4):.1f}" fill="white" opacity="{random.uniform(0.15,0.75):.1f}"/>' for _ in range(60)])
+          gd  = "".join([f'<rect x="{i*50}" y="{H-GROUND_H+9}" width="32" height="3" fill="#21262d" rx="1"/>' for i in range(22)])
+          gd2 = "".join([f'<rect x="{W+i*50}" y="{H-GROUND_H+9}" width="32" height="3" fill="#21262d" rx="1"/>' for i in range(22)])
           pipe_svgs = []
           for i in range(NUM_PIPES):
-              gy = gap_ys[i]
-              top_h = gy
-              bot_y = gy + GAP
+              gc = gap_centers[i]
+              top_h = gc - GAP // 2
+              bot_y = gc + GAP // 2
               bot_h = SKY_H - bot_y
               end_x = -(PIPE_W + CAP_EXTRA + 20)
-              delay = -(i / NUM_PIPES * PLAY_DUR)
-              pipe_svgs.append(f'<g><animateTransform attributeName="transform" type="translate" from="{W} 0" to="{end_x} 0" dur="{PLAY_DUR}s" begin="{delay:.3f}s" repeatCount="indefinite"/><rect x="0" y="0" width="{PIPE_W}" height="{max(top_h-CAP_H,0)}" fill="{PIPE_COLOR}" rx="2"/><rect x="2" y="2" width="5" height="{max(top_h-CAP_H-4,0)}" fill="{PIPE_HIGHLIGHT}" opacity="0.35" rx="1"/><rect x="-{CAP_EXTRA//2}" y="{top_h-CAP_H}" width="{PIPE_W+CAP_EXTRA}" height="{CAP_H}" fill="{PIPE_DARK}" rx="4"/><rect x="-{CAP_EXTRA//2}" y="{bot_y}" width="{PIPE_W+CAP_EXTRA}" height="{CAP_H}" fill="{PIPE_DARK}" rx="4"/><rect x="0" y="{bot_y+CAP_H}" width="{PIPE_W}" height="{max(bot_h-CAP_H,0)}" fill="{PIPE_COLOR}" rx="2"/><rect x="2" y="{bot_y+CAP_H+2}" width="5" height="{max(bot_h-CAP_H-4,0)}" fill="{PIPE_HIGHLIGHT}" opacity="0.35" rx="1"/></g>')
-          steps = 80
-          bird_x = 155
-          bird_y_mid = SKY_H // 2
-          amplitude = 42
-          normal_translate = []
-          normal_rotate = []
-          for i in range(steps + 1):
-              t = i / steps * PLAY_DUR
-              frac = t / PLAY_DUR
-              y = bird_y_mid + amplitude * math.sin(2 * math.pi * frac * (PLAY_DUR / 2.2))
-              normal_translate.append(f"{bird_x} {y:.1f}")
-              dy = amplitude * 2 * math.pi / 2.2 * math.cos(2 * math.pi * frac * (PLAY_DUR / 2.2))
-              rot = max(-28, min(28, dy * 0.35))
-              normal_rotate.append(f"{rot:.1f}")
-          crash_steps = 30
-          crash_frac = CRASH_T / PLAY_DUR
-          crash_y = bird_y_mid + amplitude * math.sin(2 * math.pi * crash_frac * (PLAY_DUR / 2.2))
-          crash_translate = []
-          crash_rotate = []
-          for i in range(crash_steps + 1):
-              frac = i / crash_steps
-              y = crash_y + 120 * (frac ** 2)
-              crash_translate.append(f"{bird_x} {y:.1f}")
-              crash_rotate.append(f"{frac * 90:.1f}")
-          all_translate = normal_translate + crash_translate[1:]
-          all_rotate = normal_rotate + crash_rotate[1:]
-          all_times = []
-          for i in range(len(normal_translate)):
-              t = (i / (len(normal_translate)-1)) * CRASH_T / TOTAL_DUR
-              all_times.append(f"{t:.4f}")
-          for i in range(1, len(crash_translate)):
-              t = CRASH_T/TOTAL_DUR + (i / (len(crash_translate)-1)) * (PLAY_DUR - CRASH_T) / TOTAL_DUR
-              all_times.append(f"{t:.4f}")
-          all_translate.append(all_translate[-1])
-          all_rotate.append(all_rotate[-1])
-          all_times.append("1.0000")
-          translate_vals = "; ".join(all_translate)
-          rotate_vals = "; ".join(all_rotate)
-          key_times = "; ".join(all_times)
-          ground_dashes = "".join([f'<rect x="{i*50}" y="{H-GROUND_H+9}" width="32" height="3" fill="#21262d" rx="1"/>' for i in range(22)])
-          ground_repeat = "".join([f'<rect x="{W+i*50}" y="{H-GROUND_H+9}" width="32" height="3" fill="#21262d" rx="1"/>' for i in range(22)])
-          svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><defs><clipPath id="scene"><rect width="{W}" height="{H}"/></clipPath><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="0.5"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs><rect width="{W}" height="{H}" fill="{BG_SKY}"/>{stars}<rect y="{H-GROUND_H}" width="{W}" height="{GROUND_H}" fill="{BG_GROUND}"/><line x1="0" y1="{H-GROUND_H}" x2="{W}" y2="{H-GROUND_H}" stroke="{GROUND_LINE}" stroke-width="2"/><g clip-path="url(#scene)"><g><animateTransform attributeName="transform" type="translate" from="0 0" to="-{W} 0" dur="{PLAY_DUR*0.45:.1f}s" repeatCount="indefinite"/>{ground_dashes}{ground_repeat}</g></g><g clip-path="url(#scene)">{"".join(pipe_svgs)}</g><g><animateTransform attributeName="transform" type="translate" values="{translate_vals}" keyTimes="{key_times}" calcMode="linear" dur="{TOTAL_DUR}s" repeatCount="indefinite"/><ellipse rx="26" ry="20" fill="url(#glow)" opacity="0.6"/></g><g><animateTransform attributeName="transform" type="translate" values="{translate_vals}" keyTimes="{key_times}" calcMode="linear" dur="{TOTAL_DUR}s" repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="rotate" values="{rotate_vals}" keyTimes="{key_times}" calcMode="linear" dur="{TOTAL_DUR}s" repeatCount="indefinite"/><ellipse cx="2" cy="14" rx="12" ry="4" fill="black" opacity="0.2"/><ellipse rx="16" ry="13" fill="{BIRD_COLOR}"/><ellipse cx="-3" cy="-4" rx="7" ry="5" fill="white" opacity="0.15"/><ellipse cx="-4" cy="1" rx="9" ry="5" fill="{BIRD_DARK}"><animateTransform attributeName="transform" type="rotate" values="0;-40;0;30;0" dur="0.22s" repeatCount="indefinite"/></ellipse><circle cx="6" cy="-4" r="5" fill="white"/><circle cx="7.5" cy="-4" r="2.8" fill="#111"/><circle cx="9" cy="-5.5" r="1.1" fill="white"/><polygon points="14,-4 23,-1 14,1" fill="#FF8C00"/><polygon points="14,1 22,2 14,4" fill="#FF6600"/></g></g><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{CRASH_T/TOTAL_DUR:.3f};{(CRASH_T+0.5)/TOTAL_DUR:.3f};0.95;1.0" dur="{TOTAL_DUR}s" repeatCount="indefinite"/><rect width="{W}" height="{H}" fill="black" opacity="0.6"/><rect width="{W}" height="{H}" fill="#E03C3C" opacity="0.15"/><rect x="{W//2-130}" y="{H//2-45}" width="260" height="90" fill="#0d1117" rx="12" stroke="{PIPE_COLOR}" stroke-width="2"/><text x="{W//2}" y="{H//2-12}" font-family="monospace" font-size="28" font-weight="bold" fill="{PIPE_COLOR}" text-anchor="middle">GAME OVER</text><text x="{W//2}" y="{H//2+18}" font-family="monospace" font-size="12" fill="#888" text-anchor="middle">olit bot didn't make it 💀</text><text x="{W//2}" y="{H//2+36}" font-family="monospace" font-size="10" fill="#555" text-anchor="middle">restarting...</text></g><rect x="10" y="10" width="92" height="42" fill="black" opacity="0.45" rx="6"/><text x="20" y="28" font-family="monospace" font-size="13" fill="{PIPE_COLOR}" font-weight="bold">OLIT BOT</text><text x="20" y="44" font-family="monospace" font-size="9" fill="#666">flappy edition</text></svg>"""
+              delay = -(i / NUM_PIPES * DUR)
+              pipe_svgs.append(f'<g><animateTransform attributeName="transform" type="translate" from="{W} 0" to="{end_x} 0" dur="{DUR}s" begin="{delay:.4f}s" repeatCount="indefinite"/><rect x="0" y="0" width="{PIPE_W}" height="{max(top_h-CAP_H,0)}" fill="{PIPE_COLOR}" rx="2"/><rect x="3" y="2" width="5" height="{max(top_h-CAP_H-4,0)}" fill="{PIPE_HIGHLIGHT}" opacity="0.3" rx="1"/><rect x="-{CAP_EXTRA//2}" y="{max(top_h-CAP_H,0)}" width="{PIPE_W+CAP_EXTRA}" height="{CAP_H}" fill="{PIPE_DARK}" rx="4"/><rect x="-{CAP_EXTRA//2}" y="{bot_y}" width="{PIPE_W+CAP_EXTRA}" height="{CAP_H}" fill="{PIPE_DARK}" rx="4"/><rect x="0" y="{bot_y+CAP_H}" width="{PIPE_W}" height="{max(bot_h-CAP_H,0)}" fill="{PIPE_COLOR}" rx="2"/><rect x="3" y="{bot_y+CAP_H+2}" width="5" height="{max(bot_h-CAP_H-4,0)}" fill="{PIPE_HIGHLIGHT}" opacity="0.3" rx="1"/></g>')
+          tv = "; ".join(translate_vals)
+          rv = "; ".join(rotate_vals)
+          kt = "; ".join(key_times_list)
+          svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><defs><clipPath id="scene"><rect width="{W}" height="{H}"/></clipPath><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="0.45"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs><rect width="{W}" height="{H}" fill="{BG_SKY}"/>{stars}<rect y="{H-GROUND_H}" width="{W}" height="{GROUND_H}" fill="{BG_GROUND}"/><line x1="0" y1="{H-GROUND_H}" x2="{W}" y2="{H-GROUND_H}" stroke="{GROUND_LINE}" stroke-width="2"/><g clip-path="url(#scene)"><g><animateTransform attributeName="transform" type="translate" from="0 0" to="-{W} 0" dur="{DUR*0.45:.2f}s" repeatCount="indefinite"/>{gd}{gd2}</g></g><g clip-path="url(#scene)">{"".join(pipe_svgs)}</g><g><animateTransform attributeName="transform" type="translate" values="{tv}" keyTimes="{kt}" calcMode="linear" dur="{DUR}s" repeatCount="indefinite"/><ellipse rx="26" ry="20" fill="url(#glow)"/></g><g><animateTransform attributeName="transform" type="translate" values="{tv}" keyTimes="{kt}" calcMode="linear" dur="{DUR}s" repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="rotate" values="{rv}" keyTimes="{kt}" calcMode="linear" dur="{DUR}s" repeatCount="indefinite"/><ellipse cx="2" cy="14" rx="12" ry="4" fill="black" opacity="0.2"/><ellipse rx="16" ry="13" fill="{BIRD_COLOR}"/><ellipse cx="-3" cy="-4" rx="7" ry="5" fill="white" opacity="0.14"/><ellipse cx="-4" cy="1" rx="9" ry="5" fill="{BIRD_DARK}"><animateTransform attributeName="transform" type="rotate" values="0;-42;0;32;0" dur="0.21s" repeatCount="indefinite"/></ellipse><circle cx="6" cy="-4" r="5" fill="white"/><circle cx="7.5" cy="-4" r="2.8" fill="#111"/><circle cx="9" cy="-5.5" r="1.1" fill="white"/><polygon points="14,-4 23,-1 14,1" fill="#FF8C00"/><polygon points="14,1 22,2 14,4" fill="#FF6600"/></g></g><rect x="10" y="10" width="92" height="42" fill="black" opacity="0.4" rx="6"/><text x="20" y="28" font-family="monospace" font-size="13" fill="{PIPE_COLOR}" font-weight="bold">OLIT BOT</text><text x="20" y="44" font-family="monospace" font-size="9" fill="#666">flappy edition</text></svg>"""
           os.makedirs("dist", exist_ok=True)
           with open("dist/flappy-bird.svg", "w") as f:
               f.write(svg)
