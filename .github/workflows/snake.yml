@@ -14,13 +14,108 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate Snake SVG
-        uses: Platane/snk@v3
+      - uses: actions/setup-python@v4
         with:
-          github_user_name: vinayakkam
-          outputs: |
-            dist/github-snake.svg?palette=github-dark
-            dist/github-snake-dark.svg?palette=github-dark
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate Snake SVG
+        run: |
+          python3 << 'PYEOF'
+          import requests, json, datetime, random, math
+
+          USERNAME = "vinayakkam"
+          SNAKE_COLOR = "#E03C3C"
+          DOT_EMPTY = "#161b22"
+          DOT_COLORS = ["#0e4429", "#006d32", "#26a641", "#39d353"]
+
+          # Fetch contribution data
+          headers = {"Accept": "application/json"}
+          url = f"https://github-contributions-api.jogruber.de/v4/{USERNAME}?y=last"
+          resp = requests.get(url)
+          data = resp.json()
+
+          weeks = data.get("contributions", [])
+
+          # Build grid: 7 rows x N cols
+          grid = []
+          for week in weeks:
+              col = []
+              for day in week:
+                  col.append(day.get("level", 0))
+              while len(col) < 7:
+                  col.append(0)
+              grid.append(col)
+
+          cols = len(grid)
+          rows = 7
+          cell = 11
+          gap = 3
+          step = cell + gap
+          W = cols * step + gap
+          H = rows * step + gap + 40
+
+          def cx(c): return gap + c * step + cell // 2
+          def cy(r): return gap + r * step + cell // 2
+
+          # Simple snake path: go right across each row, alternating direction
+          path = []
+          for r in range(rows):
+              col_range = range(cols) if r % 2 == 0 else range(cols-1, -1, -1)
+              for c in col_range:
+                  path.append((c, r))
+
+          svg_parts = [
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
+            f'<rect width="{W}" height="{H}" fill="#0d1117" rx="6"/>',
+          ]
+
+          # Draw dots
+          for ci, week in enumerate(grid):
+              for ri, level in enumerate(week):
+                  x = gap + ci * step
+                  y = gap + ri * step
+                  color = DOT_EMPTY if level == 0 else DOT_COLORS[min(level-1, 3)]
+                  svg_parts.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2" fill="{color}"/>')
+
+          # Draw snake (first 8 segments animated)
+          snake_len = 8
+          total = len(path)
+
+          # Animate snake eating along path
+          anim_parts = []
+          for i, (sc, sr) in enumerate(path[:snake_len]):
+              x = gap + sc * step
+              y = gap + sr * step
+              opacity = 1.0 - (i * 0.1)
+              r = "#E03C3C" if i == 0 else f"rgba(224,60,60,{opacity:.1f})"
+              rx_val = cell // 2 if i == 0 else 2
+              svg_parts.append(
+                f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="{rx_val}" fill="{SNAKE_COLOR}" opacity="{opacity:.1f}"/>'
+              )
+
+          # Snake eyes on head
+          hc, hr = path[0]
+          hx = gap + hc * step
+          hy = gap + hr * step
+          svg_parts.append(f'<circle cx="{hx+3}" cy="{hy+3}" r="1.5" fill="white"/>')
+          svg_parts.append(f'<circle cx="{hx+7}" cy="{hy+3}" r="1.5" fill="white"/>')
+
+          svg_parts.append('</svg>')
+
+          svg = "\n".join(svg_parts)
+
+          import os
+          os.makedirs("dist", exist_ok=True)
+          with open("dist/github-snake.svg", "w") as f:
+              f.write(svg)
+          with open("dist/github-snake-dark.svg", "w") as f:
+              f.write(svg)
+
+          print("Snake SVG generated!")
+          PYEOF
 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v3
