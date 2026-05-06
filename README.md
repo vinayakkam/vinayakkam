@@ -24,7 +24,7 @@ me = {
 ```
 
 <div align="center">
-<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=3600"/>
+<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&mode=weekly&theme=tokyonight&hide_border=true&background=0D1117&ring=5865F2&fire=5865F2&currStreakLabel=5865F2&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=5865F2&cache_seconds=3600"/>
 </div>
 
 <br/>
@@ -95,7 +95,7 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true&cache_seconds=3600"/>
+<img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&icon_color=5865F2&text_color=ffffff&count_private=true&include_all_commits=true&cache_seconds=3600"/>
 <img width="49%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=5865F2&text_color=ffffff&langs_count=6&cache_seconds=3600"/>
 
 </div>
