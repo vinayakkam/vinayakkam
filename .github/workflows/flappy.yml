@@ -1,0 +1,117 @@
+name: Generate Flappy Bird
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Generate Flappy Bird SVG
+        run: |
+          python3 - << 'PYEOF'
+          import os, math, random
+          random.seed(42)
+          W, H = 800, 200
+          DURATION = 3
+          PIPE_COLOR = "#E03C3C"
+          PIPE_DARK = "#922b21"
+          BIRD_COLOR = "#FFD700"
+          BIRD_DARK = "#FFA500"
+          BG_SKY = "#0d1117"
+          BG_GROUND = "#161b22"
+          GROUND_LINE = "#30363d"
+          pipes = [
+              {"x": 250, "gap_y": 55},
+              {"x": 450, "gap_y": 95},
+              {"x": 650, "gap_y": 65},
+              {"x": 850, "gap_y": 85},
+          ]
+          GAP = 65
+          PIPE_W = 38
+          steps = 30
+          bird_translate = []
+          for i in range(steps + 1):
+              t = i / steps
+              y = 80 + 45 * math.sin(2 * math.pi * t)
+              bird_translate.append(f"150 {y:.1f}")
+          bird_vals = "; ".join(bird_translate)
+          rot_vals_list = []
+          for i in range(steps + 1):
+              t = i / steps
+              rot = -25 * math.cos(2 * math.pi * t)
+              rot_vals_list.append(f"{rot:.1f}")
+          rot_vals = "; ".join(rot_vals_list)
+          stars = "".join([
+              f'<circle cx="{random.randint(5,W-5)}" cy="{random.randint(5,H-35)}" r="{random.uniform(0.8,1.5):.1f}" fill="white" opacity="{random.uniform(0.3,0.9):.1f}"/>'
+              for _ in range(50)
+          ])
+          pipe_svgs = []
+          for i, p in enumerate(pipes):
+              ox = p["x"]
+              gy = p["gap_y"]
+              top_h = gy
+              bot_y = gy + GAP
+              bot_h = H - 30 - bot_y
+              pipe_svgs.append(f'''
+            <g transform="translate({ox},0)">
+              <animateTransform attributeName="transform" type="translate"
+                from="{ox} 0" to="{ox - W - PIPE_W} 0"
+                dur="{DURATION}s" begin="0s" repeatCount="indefinite"/>
+              <rect x="0" y="0" width="{PIPE_W}" height="{top_h}" fill="{PIPE_COLOR}" rx="4"/>
+              <rect x="-6" y="{top_h-14}" width="{PIPE_W+12}" height="14" fill="{PIPE_DARK}" rx="3"/>
+              <rect x="0" y="{bot_y}" width="{PIPE_W}" height="{max(bot_h,0)}" fill="{PIPE_COLOR}" rx="4"/>
+              <rect x="-6" y="{bot_y}" width="{PIPE_W+12}" height="14" fill="{PIPE_DARK}" rx="3"/>
+            </g>''')
+          svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+            <defs><clipPath id="scene"><rect width="{W}" height="{H}"/></clipPath></defs>
+            <rect width="{W}" height="{H}" fill="{BG_SKY}"/>
+            {stars}
+            <rect y="{H-30}" width="{W}" height="30" fill="{BG_GROUND}"/>
+            <line x1="0" y1="{H-30}" x2="{W}" y2="{H-30}" stroke="{GROUND_LINE}" stroke-width="2"/>
+            <g clip-path="url(#scene)">{"".join(pipe_svgs)}</g>
+            <g>
+              <animateTransform attributeName="transform" type="translate"
+                values="{bird_vals}" dur="{DURATION}s" repeatCount="indefinite"/>
+              <g>
+                <animateTransform attributeName="transform" type="rotate"
+                  values="{rot_vals}" dur="{DURATION}s" repeatCount="indefinite"/>
+                <ellipse cx="1" cy="13" rx="12" ry="4" fill="black" opacity="0.2"/>
+                <ellipse rx="15" ry="12" fill="{BIRD_COLOR}"/>
+                <ellipse cx="-3" cy="0" rx="8" ry="5" fill="{BIRD_DARK}">
+                  <animateTransform attributeName="transform" type="rotate"
+                    values="0;-35;0;25;0" dur="0.25s" repeatCount="indefinite"/>
+                </ellipse>
+                <circle cx="6" cy="-3" r="4.5" fill="white"/>
+                <circle cx="7" cy="-3" r="2.5" fill="#111"/>
+                <circle cx="8" cy="-4.5" r="1" fill="white"/>
+                <polygon points="13,-3 21,0 13,4" fill="#FF8C00"/>
+              </g>
+            </g>
+            <text x="16" y="28" font-family="monospace" font-size="13" fill="{PIPE_COLOR}" font-weight="bold">OLIT BOT</text>
+            <text x="16" y="46" font-family="monospace" font-size="10" fill="#555">flappy edition</text>
+          </svg>"""
+          os.makedirs("dist", exist_ok=True)
+          with open("dist/flappy-bird.svg", "w") as f:
+              f.write(svg)
+          print("Flappy Bird SVG generated!")
+          PYEOF
+
+      - name: Push to output branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: output
+          publish_dir: ./dist
+          keep_files: true
