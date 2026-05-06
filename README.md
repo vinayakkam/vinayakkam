@@ -102,15 +102,15 @@ My personal Discord development project — where I build, experiment, and ship 
 
 ---
 
-## 🐍 Contribution Snake
+## 🐦 Flappy OLIT
 
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake.svg"/>
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/github-snake.svg"/>
-</picture>
+
+  
+  
+  <img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/flappy-bird.svg" alt="Flappy OLIT Bird Animation" width="100%"/>
+
 
 </div>
 
