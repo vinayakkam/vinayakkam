@@ -1,4 +1,4 @@
-name: Generate Snake
+name: Generate Flappy Bird
 
 on:
   schedule:
@@ -18,103 +18,141 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Generate Snake SVG
+      - name: Generate Flappy Bird SVG
         run: |
           python3 << 'PYEOF'
-          import requests, json, datetime, random, math
+          import os, math, random
 
-          USERNAME = "vinayakkam"
-          SNAKE_COLOR = "#E03C3C"
-          DOT_EMPTY = "#161b22"
-          DOT_COLORS = ["#0e4429", "#006d32", "#26a641", "#39d353"]
+          W, H = 800, 200
+          BIRD_X = 150
+          PIPE_W = 40
+          GAP = 70
+          NUM_PIPES = 4
+          PIPE_SPACING = 180
+          DURATION = 4  # seconds per loop
 
-          # Fetch contribution data
-          headers = {"Accept": "application/json"}
-          url = f"https://github-contributions-api.jogruber.de/v4/{USERNAME}?y=last"
-          resp = requests.get(url)
-          data = resp.json()
-
-          weeks = data.get("contributions", [])
-
-          # Build grid: 7 rows x N cols
-          grid = []
-          for week in weeks:
-              col = []
-              for day in week:
-                  col.append(day.get("level", 0))
-              while len(col) < 7:
-                  col.append(0)
-              grid.append(col)
-
-          cols = len(grid)
-          rows = 7
-          cell = 11
-          gap = 3
-          step = cell + gap
-          W = cols * step + gap
-          H = rows * step + gap + 40
-
-          def cx(c): return gap + c * step + cell // 2
-          def cy(r): return gap + r * step + cell // 2
-
-          # Simple snake path: go right across each row, alternating direction
-          path = []
-          for r in range(rows):
-              col_range = range(cols) if r % 2 == 0 else range(cols-1, -1, -1)
-              for c in col_range:
-                  path.append((c, r))
-
-          svg_parts = [
-            f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
-            f'<rect width="{W}" height="{H}" fill="#0d1117" rx="6"/>',
+          # Pipe positions and gap heights (randomish but fixed for clean loop)
+          pipes = [
+              {"x": 300, "gap_y": 60},
+              {"x": 480, "gap_y": 100},
+              {"x": 660, "gap_y": 50},
+              {"x": 840, "gap_y": 90},
           ]
 
-          # Draw dots
-          for ci, week in enumerate(grid):
-              for ri, level in enumerate(week):
-                  x = gap + ci * step
-                  y = gap + ri * step
-                  color = DOT_EMPTY if level == 0 else DOT_COLORS[min(level-1, 3)]
-                  svg_parts.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2" fill="{color}"/>')
+          # Bird bounces up/down sinusoidally
+          # At t=0 bird is at center
+          BG_SKY = "#0d1117"
+          BG_GROUND = "#161b22"
+          PIPE_COLOR = "#E03C3C"
+          PIPE_DARK = "#922b21"
+          BIRD_COLOR = "#FFD700"
+          BIRD_DARK = "#FFA500"
+          GROUND_LINE = "#30363d"
 
-          # Draw snake (first 8 segments animated)
-          snake_len = 8
-          total = len(path)
+          # Build pipe SVG elements with animation
+          pipe_svgs = []
+          for i, p in enumerate(pipes):
+              ox = p["x"]
+              gy = p["gap_y"]
+              top_h = gy
+              bot_y = gy + GAP
+              bot_h = H - 30 - bot_y
 
-          # Animate snake eating along path
-          anim_parts = []
-          for i, (sc, sr) in enumerate(path[:snake_len]):
-              x = gap + sc * step
-              y = gap + sr * step
-              opacity = 1.0 - (i * 0.1)
-              r = "#E03C3C" if i == 0 else f"rgba(224,60,60,{opacity:.1f})"
-              rx_val = cell // 2 if i == 0 else 2
-              svg_parts.append(
-                f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="{rx_val}" fill="{SNAKE_COLOR}" opacity="{opacity:.1f}"/>'
-              )
+              delay = 0  # all pipes move together
 
-          # Snake eyes on head
-          hc, hr = path[0]
-          hx = gap + hc * step
-          hy = gap + hr * step
-          svg_parts.append(f'<circle cx="{hx+3}" cy="{hy+3}" r="1.5" fill="white"/>')
-          svg_parts.append(f'<circle cx="{hx+7}" cy="{hy+3}" r="1.5" fill="white"/>')
+              # Top pipe
+              pipe_svgs.append(f'''
+                <g>
+                  <animateTransform attributeName="transform" type="translate"
+                    values="{ox} 0; {ox - W - PIPE_W} 0"
+                    dur="{DURATION}s" begin="{0}s" repeatCount="indefinite"/>
+                  <rect x="0" y="0" width="{PIPE_W}" height="{top_h}" fill="{PIPE_COLOR}" rx="3"/>
+                  <rect x="-5" y="{top_h - 16}" width="{PIPE_W+10}" height="16" fill="{PIPE_DARK}" rx="3"/>
+                  <rect x="0" y="{bot_y}" width="{PIPE_W}" height="{bot_h}" fill="{PIPE_COLOR}" rx="3"/>
+                  <rect x="-5" y="{bot_y}" width="{PIPE_W+10}" height="16" fill="{PIPE_DARK}" rx="3"/>
+                </g>
+              ''')
 
-          svg_parts.append('</svg>')
+          # Bird wing flap frames
+          wing_up = f'''
+            <ellipse cx="0" cy="-3" rx="7" ry="4" fill="{BIRD_DARK}" transform="rotate(-20)"/>
+          '''
+          wing_down = f'''
+            <ellipse cx="0" cy="3" rx="7" ry="4" fill="{BIRD_DARK}" transform="rotate(20)"/>
+          '''
 
-          svg = "\n".join(svg_parts)
+          bird_y_values = []
+          steps = 60
+          for i in range(steps + 1):
+              t = i / steps
+              y = 85 + 40 * math.sin(2 * math.pi * t)
+              bird_y_values.append(f"{BIRD_X} {y:.1f}")
+          bird_path = "; ".join(bird_y_values)
 
-          import os
+          # Rotation animation (tilt up when rising, down when falling)
+          rot_values = []
+          for i in range(steps + 1):
+              t = i / steps
+              rot = -20 * math.cos(2 * math.pi * t)
+              rot_values.append(f"{rot:.1f}")
+          rot_path = "; ".join(rot_values)
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+            <defs>
+              <clipPath id="clip">
+                <rect width="{W}" height="{H}"/>
+              </clipPath>
+            </defs>
+
+            <!-- Sky -->
+            <rect width="{W}" height="{H}" fill="{BG_SKY}"/>
+
+            <!-- Stars -->
+            {''.join([f'<circle cx="{random.randint(0,W)}" cy="{random.randint(0,H-30)}" r="1" fill="white" opacity="{random.uniform(0.3,0.8):.1f}"/>' for _ in range(40)])}
+
+            <!-- Ground -->
+            <rect y="{H-30}" width="{W}" height="30" fill="{BG_GROUND}"/>
+            <line x1="0" y1="{H-30}" x2="{W}" y2="{H-30}" stroke="{GROUND_LINE}" stroke-width="2"/>
+
+            <!-- Pipes -->
+            <g clip-path="url(#clip)">
+              {''.join(pipe_svgs)}
+            </g>
+
+            <!-- Bird -->
+            <g>
+              <animateTransform attributeName="transform" type="translate"
+                values="{bird_path}"
+                dur="{DURATION}s" repeatCount="indefinite"/>
+              <g>
+                <animateTransform attributeName="transform" type="rotate"
+                  values="{rot_path}"
+                  dur="{DURATION}s" repeatCount="indefinite"/>
+                <!-- Body -->
+                <ellipse rx="14" ry="11" fill="{BIRD_COLOR}"/>
+                <!-- Wing -->
+                <ellipse cx="-2" cy="2" rx="7" ry="4" fill="{BIRD_DARK}">
+                  <animateTransform attributeName="transform" type="rotate"
+                    values="0;-30;0;20;0" dur="0.3s" repeatCount="indefinite"/>
+                </ellipse>
+                <!-- Eye -->
+                <circle cx="6" cy="-3" r="4" fill="white"/>
+                <circle cx="7" cy="-3" r="2" fill="#1a1a2e"/>
+                <circle cx="8" cy="-4" r="0.7" fill="white"/>
+                <!-- Beak -->
+                <polygon points="13,-2 20,0 13,3" fill="#FF8C00"/>
+              </g>
+            </g>
+
+            <!-- Score text -->
+            <text x="20" y="30" font-family="monospace" font-size="14" fill="#E03C3C" font-weight="bold">OLIT BOT</text>
+            <text x="20" y="50" font-family="monospace" font-size="11" fill="#888">flappy edition</text>
+          </svg>'''
+
           os.makedirs("dist", exist_ok=True)
-          with open("dist/github-snake.svg", "w") as f:
+          with open("dist/flappy-bird.svg", "w") as f:
               f.write(svg)
-          with open("dist/github-snake-dark.svg", "w") as f:
-              f.write(svg)
-
-          print("Snake SVG generated!")
+          print("Flappy Bird SVG generated!")
           PYEOF
 
       - name: Push to output branch
