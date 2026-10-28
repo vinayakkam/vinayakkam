@@ -1,12 +1,20 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B0000,100:E03C3C&height=200&section=header&text=Vinayak%20Kamath&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%7C%20Python%20%7C%20Java%20%7C%20HTML&descAlignY=55&descColor=ffffffcc&descSize=18" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B0000,100:E03C3C&height=220&section=header&text=Vinayak%20Kamath&fontSize=56&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%C2%B7%20Founder%20of%20OLIT%20Technologies&descAlignY=56&descColor=ffffffcc&descSize=17&animation=fadeIn" width="100%"/>
 
 <div align="center">
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=E03C3C&center=true&vCenter=true&width=650&lines=Hey+there!+I'm+Vinayak+%F0%9F%91%8B;I+build+Discord+bots+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML+%7C+CSS;Founder+of+OLIT+Technologies+%F0%9F%8C%90;Always+learning%2C+always+shipping+%F0%9F%9A%80)](https://git.io/typing-svg)
 
+[![Website](https://img.shields.io/badge/olittechnologies.co.in-0D1117?style=flat-square&logo=googlechrome&logoColor=E03C3C)](https://www.olittechnologies.co.in)
+[![Gmail](https://img.shields.io/badge/vinayakkamath2006@gmail.com-0D1117?style=flat-square&logo=gmail&logoColor=E03C3C)](mailto:vinayakkamath2006@gmail.com)
+[![Followers](https://img.shields.io/github/followers/vinayakkam?label=followers&style=flat-square&logo=github&logoColor=E03C3C&color=0D1117&labelColor=0D1117)](https://github.com/vinayakkam?tab=followers)
+
 </div>
 
----
+<br/>
+
+<table>
+<tr>
+<td width="55%" valign="top">
 
 ### 👾 About Me
 
@@ -23,19 +31,22 @@ me = {
 }
 ```
 
-<div align="center">
-<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&mode=weekly&theme=tokyonight&hide_border=true&background=0D1117&ring=E03C3C&fire=E03C3C&currStreakLabel=E03C3C&sideLabels=ffffff&dates=888888&sideNums=ffffff&currStreakNum=E03C3C&cache_seconds=3600"/>
-</div>
+</td>
+<td width="45%" valign="top">
 
-<br/>
+### ⚡ Right Now
 
-🤖 I build **Discord bots** — moderation, automation, utilities, the works  
-🌐 Founder of **[OLIT Technologies](https://www.olittechnologies.co.in)** — my Discord dev project  
-🔧 Love clean code, smart architecture & bot ecosystems  
-☕ Java for OOP brain training  
-📬 Reach me at **vinayakkamath2006@gmail.com**
+🤖 Building **Discord bots** — moderation, automation, utilities, the works
 
----
+🌐 Running **[OLIT Technologies](https://www.olittechnologies.co.in)**, my Discord dev project
+
+🔧 Into clean code, smart architecture & bot ecosystems
+
+☕ Java for OOP brain training
+
+</td>
+</tr>
+</table>
 
 ## 🤖 OLIT Bot
 
@@ -43,13 +54,55 @@ me = {
 
 [![BOT STATUS](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=FF6B6B&center=true&vCenter=true&width=500&lines=🟢+OLIT+BOT+STATUS%3A+ONLINE;Advanced+Multifunctional+Discord+Bot;Games+%7C+Leaderboards+%7C+Galaxy+Explorer;discord.py+2.4%2B+%7C+Python+3.9%2B+%7C+24%2F7+✅)](https://git.io/typing-svg)
 
+![discord.py](https://img.shields.io/badge/discord.py-2.4%2B-E03C3C?style=flat-square&logo=discord&logoColor=white&labelColor=0D1117)
+![Python](https://img.shields.io/badge/Python-3.9%2B-E03C3C?style=flat-square&logo=python&logoColor=white&labelColor=0D1117)
+![Docker](https://img.shields.io/badge/Docker-ready-E03C3C?style=flat-square&logo=docker&logoColor=white&labelColor=0D1117)
+![Slash Commands](https://img.shields.io/badge/Slash%20%2B%20Prefix-commands-E03C3C?style=flat-square&logo=discord&logoColor=white&labelColor=0D1117)
+
 </div>
 
-> 🤖 **OLIT Bot** is an advanced multifunctional Discord bot built for entertainment, automation & community engagement — developed and owned by **OLIT Technologies**.
+> An advanced multifunctional Discord bot for entertainment, automation & community engagement — developed and owned by **OLIT Technologies**.
 
-<div align="center">
+<table>
+<tr>
+<td width="33%" valign="top">
 
-**🎮 Games & Interactivity**
+**🎮 Quick Games**
+
+🪨 Rock Paper Scissors<br/>
+🪙 Coin Flip<br/>
+🎲 Dice Roll<br/>
+🔢 Number Guess
+
+</td>
+<td width="33%" valign="top">
+
+**🧠 Brain & Space**
+
+🧮 Math Quiz<br/>
+🔤 Word Unscramble<br/>
+🎓 Space Trivia<br/>
+🥢 Booster Catch<br/>
+🌌 Galaxy Explorer
+
+</td>
+<td width="34%" valign="top">
+
+**🏆 Community**
+
+🏅 Per-server leaderboards + auto Leader role<br/>
+👋 Welcome embeds with avatars & member count<br/>
+😎 Keyword-triggered emoji reactions<br/>
+🌐 Multi-server, per-guild config
+
+</td>
+</tr>
+</table>
+
+<details>
+<summary><b>What each game does</b></summary>
+
+<br/>
 
 | Game | Description |
 |---|---|
@@ -63,92 +116,46 @@ me = {
 | 🥢 **Booster Catch** | Interactive SpaceX booster catching simulation |
 | 🌌 **Galaxy Explorer** | Procedurally generated galaxy & solar system exploration |
 
-**🏆 More Features**
-
-| Feature | Description |
-|---|---|
-| 🏅 **Leaderboards** | Per-server score tracking with auto Leader role assignment |
-| 👋 **Welcome System** | Embedded welcome messages with avatars & member count |
-| 😎 **Emoji Reactions** | Keyword-triggered custom emoji reaction system |
-| ⚡ **Slash + Prefix** | Supports both `/commands` and `!commands` |
-| 🌐 **Multi-server** | Fully configurable per Discord guild |
-
-</div>
-
-> **Stack:** `discord.py 2.4+` &nbsp;·&nbsp; `Python 3.9+` &nbsp;·&nbsp; `Async/Await` &nbsp;·&nbsp; `Docker` &nbsp;·&nbsp; `Slash Commands API`
-
----
+</details>
 
 ## 🌐 OLIT Technologies
 
 <div align="center">
 
-[![OLIT](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=E03C3C&center=true&vCenter=true&width=500&lines=🌐+OLIT+TECHNOLOGIES;Discord+Development+·+Bot+Ecosystem;🔗+www.olittechnologies.co.in;Building+bots+%26+tools+for+communities+🚀)](https://git.io/typing-svg)
+[![OLIT](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=E03C3C&center=true&vCenter=true&width=500&lines=🌐+OLIT+TECHNOLOGIES;Discord+Development+·+Bot+Ecosystem;🔗+www.olittechnologies.co.in;Building+bots+%26+tools+for+communities+🚀)](https://www.olittechnologies.co.in)
 
 </div>
 
 My personal Discord development project — where I build, experiment, and ship bots and tools for server communities. Turning creative ideas into working, deployed products.
 
----
+## 🛠️ Tech Stack
+
+<div align="center">
+
+<a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=py,java,html,css,discord,docker,git,github,pycharm&theme=dark&perline=9" alt="Python, Java, HTML, CSS, Discord, Docker, Git, GitHub, PyCharm"/></a>
+
+</div>
 
 ## 📊 GitHub Stats
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=vinayakkam&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=E03C3C&icon_color=E03C3C&text_color=ffffff&count_private=true&include_all_commits=true&cache_seconds=3600"/>
-<img width="49%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vinayakkam&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=E03C3C&text_color=ffffff&langs_count=6&cache_seconds=3600"/>
+<img height="180" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/stats.svg" alt="GitHub stats"/>
+<img height="180" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/top-langs.svg" alt="Top languages"/>
+
+<img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&mode=weekly&hide_border=true&border_radius=10&background=0D1117&ring=E03C3C&fire=E03C3C&currStreakLabel=E03C3C&sideLabels=C9D1D9&dates=8B949E&sideNums=C9D1D9&currStreakNum=E03C3C&stroke=30363D&cache_seconds=3600" alt="GitHub streak"/>
 
 </div>
-
----
 
 ## 🐦 Flappy OLIT
 
 <div align="center">
 
-
-  
-  
-  <img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/flappy-bird.svg" alt="Flappy OLIT Bird Animation" width="100%"/>
-
+<img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/flappy-bird.svg" alt="Flappy OLIT Bird Animation" width="100%"/>
 
 </div>
 
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-**Languages & Frameworks**
-
-![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![discord.py](https://img.shields.io/badge/discord.py-E03C3C?style=for-the-badge&logo=discord&logoColor=white)
-
-**Tools & Platforms**
-
-![Git](https://img.shields.io/badge/Git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![VS Code](https://img.shields.io/badge/PY%20Charm-0078d7.svg?style=for-the-badge&logo=pycharm&logoColor=white)
-![Discord](https://img.shields.io/badge/Discord-%23E03C3C.svg?style=for-the-badge&logo=discord&logoColor=white)
-
-</div>
-
----
-
-## 📫 Connect With Me
-
-<div align="center">
-
-[![Gmail](https://img.shields.io/badge/Gmail-vinayakkamath2006%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vinayakkamath2006@gmail.com)
-[![Website](https://img.shields.io/badge/🌐%20OLIT%20Technologies-olittechnologies.co.in-E03C3C?style=for-the-badge)](https://www.olittechnologies.co.in)
-
-</div>
-
----
+<br/>
 
 <div align="center">
 

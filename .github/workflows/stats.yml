@@ -1,0 +1,42 @@
+name: Generate Stats Cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # Self-generated cards: the public Vercel stats instances rate-limit or get disabled (402).
+      - name: Generate stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=vinayakkam&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&border_radius=10&bg_color=0D1117&title_color=E03C3C&icon_color=E03C3C&text_color=C9D1D9&ring_color=E03C3C&rank_icon=github
+          path: dist/stats.svg
+          # Add a GH_STATS_PAT secret (read:user, repo) to include private contributions.
+          token: ${{ secrets.GH_STATS_PAT || secrets.GITHUB_TOKEN }}
+          # Keep the last good card on the output branch instead of writing an error card.
+          fail_on_error: true
+
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=vinayakkam&layout=compact&langs_count=6&hide_border=true&border_radius=10&bg_color=0D1117&title_color=E03C3C&text_color=C9D1D9
+          path: dist/top-langs.svg
+          token: ${{ secrets.GH_STATS_PAT || secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      - name: Push to output branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: output
+          publish_dir: ./dist
+          keep_files: true
