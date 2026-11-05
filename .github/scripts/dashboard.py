@@ -158,7 +158,8 @@ def rank_ring(level, pct, cx=140, cy=170, r=62):
 def stat_rows(s, x=280, y=92, w=270):
     """Labelled counters with dotted leaders; each row slides in after the previous one."""
     rows = [("STARS", s["stars"]), ("COMMITS", s["commits"]), ("PULL REQUESTS", s["prs"]),
-            ("MERGED PRS", s["merged"]), ("REVIEWS", s["reviews"]), ("CONTRIBUTED TO", s["contributed"])]
+            ("MERGED PRS", s["merged"]), ("REVIEWS", s["reviews"]), ("CONTRIBUTED TO", s["contributed"]),
+            ("CONTRIBUTIONS 1Y", s["total_contrib"])]
     out = [f'<text x="{x}" y="{y - 14}" fill="{RED}" font-size="11" letter-spacing="2">// OVERVIEW</text>']
     for i, (label, val) in enumerate(rows):
         ry = y + 14 + i * 29
