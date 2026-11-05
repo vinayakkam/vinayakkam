@@ -6,7 +6,8 @@ GitHub profile README repo. No app code: `README.md` is the product, rendered on
 
 - `README.md` — profile page. GitHub-flavored markdown + inline HTML (`<table>`, `<div align="center">`, `<details>`). Markdown inside HTML cells needs a blank line before and after.
 - `.github/workflows/flappy.yml` — hourly. Inline Python writes `dist/flappy-bird.svg` (animated Flappy OLIT scene), pushes it to the `output` branch.
-- `.github/workflows/stats.yml` — daily. `stats-organization/github-readme-stats-action@v2` writes `dist/stats.svg` and `dist/top-langs.svg`, pushes to `output`.
+- `.github/workflows/stats.yml` — daily. Runs `.github/scripts/dashboard.py`, which writes `dist/dashboard.svg` (rank ring, overview, languages, 52-week skyline), pushes to `output`.
+- `.github/scripts/dashboard.py` — preview locally with `OUT=/tmp/d.svg python3 .github/scripts/dashboard.py --demo` (sample data, runs self-checks), then `rsvg-convert` to PNG.
 
 ## `output` branch
 
@@ -17,11 +18,11 @@ README embeds them via `https://raw.githubusercontent.com/vinayakkam/vinayakkam/
 
 - `capsule-render.vercel.app` — header/footer waves
 - `readme-typing-svg.demolab.com` — typing text lines
-- `streak-stats.demolab.com` — streak card
 - `skillicons.dev` — tech stack icons
 - `img.shields.io` — badges
 
 Do not use public `github-readme-stats*.vercel.app` instances for the stats cards. They rate-limit or get disabled (`402 DEPLOYMENT_DISABLED`). Generate cards in `stats.yml` instead.
+Animations in generated SVGs must leave the resting state visible (start at 0s, hold with `keyTimes`), so static renderers still show content.
 Check a URL with curl before adding it. Percent-encode emoji in query strings when testing; GitHub's image proxy does it for you in the README.
 
 ## Style
