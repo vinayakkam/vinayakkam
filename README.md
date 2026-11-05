@@ -140,8 +140,12 @@ My personal Discord development project — where I build, experiment, and ship 
 
 <div align="center">
 
-<img height="180" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/stats.svg" alt="GitHub stats"/>
-<img height="180" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/top-langs.svg" alt="Top languages"/>
+<table>
+<tr>
+<td width="50%" valign="top"><img width="100%" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/stats.svg" alt="GitHub stats"/></td>
+<td width="50%" valign="top"><img width="100%" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/top-langs.svg" alt="Top languages"/></td>
+</tr>
+</table>
 
 <img width="70%" src="https://streak-stats.demolab.com?user=vinayakkam&mode=weekly&border_radius=12&border=30363D&background=0D1117&ring=E03C3C&fire=E03C3C&currStreakLabel=E03C3C&sideLabels=C9D1D9&dates=8B949E&sideNums=C9D1D9&currStreakNum=E03C3C&stroke=30363D&cache_seconds=3600" alt="GitHub streak"/>
 
