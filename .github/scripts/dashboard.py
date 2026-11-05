@@ -271,6 +271,8 @@ def render(s):
         '<filter id="glow" x="-30%" y="-30%" width="160%" height="160%">'
         '<feGaussianBlur stdDeviation="3" result="b"/>'
         '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>',
+        f'<linearGradient id="scan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{RED}" '
+        f'stop-opacity="0"/><stop offset="1" stop-color="{RED}" stop-opacity=".07"/></linearGradient>',
         '</defs>',
         f'<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="14" fill="{BG}" stroke="{BORDER}"/>',
         f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="url(#dots)"/>',
@@ -280,6 +282,9 @@ def render(s):
         f'<circle cx="64" cy="28" r="5" fill="{BORDER}"/>'
         f'<text x="86" y="32.5" fill="{RED}">{USER}@github<tspan fill="{MUTED}">:~$</tspan>'
         f'<tspan fill="{TEXT}" dx="8">./stats --live</tspan></text>'
+        f'<rect x="{86 + (len(USER) + 26) * 7.8:.0f}" y="22" width="8" height="14" fill="{RED}">'
+        f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.5;.5;1" dur="1.1s" '
+        f'repeatCount="indefinite"/></rect>'
         f'<text x="{W - 28}" y="32.5" fill="{MUTED}" text-anchor="end" font-size="11">SYNC {now}</text>'
         f'</g>',
         f'<line x1="20" y1="52" x2="{W - 20}" y2="52" stroke="{BORDER}"/>',
@@ -288,6 +293,9 @@ def render(s):
     parts += stat_rows(s)
     parts += languages(s["langs"])
     parts += skyline(s)
+    # Scan line: a faint red band sweeping down the card.
+    parts.append(f'<rect x="1" y="-60" width="{W - 2}" height="60" fill="url(#scan)" pointer-events="none">'
+                 f'<animate attributeName="y" values="-60;{H}" dur="7s" repeatCount="indefinite"/></rect>')
     parts.append('</svg>')
     return "\n".join(parts)
 
