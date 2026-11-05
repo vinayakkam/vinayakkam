@@ -133,7 +133,52 @@ def section(i, title, tag):
     ])
 
 
-ASSETS = {"hero.svg": hero}
+def code_line(x, y, segs, size=13):
+    """One line of highlighted code: segs = [(text, colour), ...]. Spaces kept as-is."""
+    spans = "".join(f'<tspan fill="{c}">{esc(t)}</tspan>' for t, c in segs)
+    return f'<text x="{x}" y="{y}" font-size="{size}" xml:space="preserve">{spans}</text>'
+
+
+def about():
+    w, h = 900, 330
+    b = window(w, h, "profile.py — ~/vinayakkam")
+    # Left pane: profile.py with line numbers.
+    kv = [("name", "K Vinayak Kamath"), ("handle", "@vinayakkam"), ("based_in", "Mangaluru, India"),
+          ("studying", "BE, Artificial Intelligence"), ("building", "OLIT Technologies"),
+          ("status", "open to opportunities")]
+    lines = [[("# profile.py", MUTED)], [("me ", TEXT), ("=", RED), (" {", MUTED)]]
+    lines += [[("    ", TEXT), (f'"{k}"'.ljust(11), TEXT), (": ", RED), (f'"{v}"', ACCENT), (",", MUTED)]
+              for k, v in kv]
+    lines.append([("    ", TEXT), ('"ships"'.ljust(11), TEXT), (": ", RED), ("[", MUTED),
+                  ('"bots"', ACCENT), (", ", MUTED), ('"dev tools"', ACCENT), (", ", MUTED),
+                  ('"AI"', ACCENT), ("],", MUTED)])
+    lines.append([("}", MUTED)])
+    for i, segs in enumerate(lines):
+        y = 88 + i * 23
+        b.append(f'<g>{reveal(0.15 + i * 0.07)}'
+                 f'<text x="44" y="{y}" fill="{BORDER}" font-size="12" text-anchor="end">{i + 1}</text>'
+                 + code_line(60, y, segs) + '</g>')
+    # Divider and right pane: projects.log, one entry at a time.
+    b.append(f'<line x1="560" y1="64" x2="560" y2="{h - 20}" stroke="{BORDER}"/>')
+    b.append(f'<text x="584" y="88" fill="{RED}" font-size="11" letter-spacing="2">// PROJECTS.LOG</text>')
+    log = [("GitPilot", "v0.5.1"), ("LatchVerify", "MCP proxy"), ("OLIT Bot", "live"),
+           ("OLIT Nexus", "local AI"), ("Twilight", "Hyprland"), ("RaptorFX", "WIP")]
+    for i, (name, tag) in enumerate(log):
+        y = 120 + i * 28
+        b.append(f'<g>{reveal(0.9 + i * 0.15, dx=-8)}'
+                 f'<text x="584" y="{y}" fill="{RED}" font-size="12">▸</text>'
+                 f'<text x="602" y="{y}" fill="{TEXT}" font-size="13">{esc(name)}</text>'
+                 f'<text x="{w - 28}" y="{y}" fill="{MUTED}" font-size="11" text-anchor="end">{esc(tag)}</text>'
+                 '</g>')
+    y = 120 + len(log) * 28
+    b.append(f'<text x="584" y="{y}" fill="{RED}" font-size="13">$</text>'
+             f'<rect x="600" y="{y - 11}" width="8" height="14" fill="{RED}">'
+             f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.5;.5;1" dur="1.1s" '
+             f'repeatCount="indefinite"/></rect>')
+    return svg(w, h, "About: K Vinayak Kamath, AI engineering student in Mangaluru, building OLIT Technologies", b)
+
+
+ASSETS = {"hero.svg": hero, "about.svg": about}
 for _i, (_slug, _title, _tag) in enumerate(SECTIONS, 1):
     ASSETS[f"section-{_slug}.svg"] = lambda i=_i, t=_title, g=_tag: section(i, t, g)
 
