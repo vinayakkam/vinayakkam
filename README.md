@@ -1,103 +1,42 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B0000,100:E03C3C&height=220&section=header&text=Vinayak%20Kamath&fontSize=56&fontColor=ffffff&fontAlignY=36&desc=Discord%20Bot%20Developer%20%C2%B7%20Founder%20of%20OLIT%20Technologies&descAlignY=56&descColor=ffffffcc&descSize=17&animation=fadeIn" width="100%"/>
+<a href="https://www.olittechnologies.co.in"><img src="assets/hero.svg" width="100%" alt="Vinayak Kamath — AI Engineering Student, Founder of OLIT Technologies"/></a>
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=E03C3C&center=true&vCenter=true&width=650&lines=Hey+there!+I'm+Vinayak+%F0%9F%91%8B;I+build+Discord+bots+%F0%9F%A4%96;Python+%7C+Java+%7C+HTML+%7C+CSS;Founder+of+OLIT+Technologies+%F0%9F%8C%90;Always+learning%2C+always+shipping+%F0%9F%9A%80)](https://git.io/typing-svg)
-
 [![Website](https://img.shields.io/badge/olittechnologies.co.in-0D1117?style=flat-square&logo=googlechrome&logoColor=E03C3C)](https://www.olittechnologies.co.in)
 [![Gmail](https://img.shields.io/badge/vinayakkamath2006@gmail.com-0D1117?style=flat-square&logo=gmail&logoColor=E03C3C)](mailto:vinayakkamath2006@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0D1117?style=flat-square&labelColor=0D1117)](https://www.linkedin.com/in/k-vinayakkamath-322a07218)
+[![Discord](https://img.shields.io/badge/Discord%20support-0D1117?style=flat-square&logo=discord&logoColor=E03C3C)](https://discord.gg/J8ByjCcm5U)
 [![Followers](https://img.shields.io/github/followers/vinayakkam?label=followers&style=flat-square&logo=github&logoColor=E03C3C&color=0D1117&labelColor=0D1117)](https://github.com/vinayakkam?tab=followers)
 
 </div>
 
-<br/>
+<img src="assets/section-about.svg" width="100%" alt="01 About"/>
 
-<table>
-<tr>
-<td width="55%" valign="top">
+<img src="assets/about.svg" width="100%" alt="profile.py: K Vinayak Kamath, Mangaluru, BE Artificial Intelligence, building OLIT Technologies, open to opportunities"/>
 
-### 👾 About Me
+<img src="assets/section-projects.svg" width="100%" alt="02 Projects"/>
 
-```python
-# profile.py
-me = {
-  "name"      : "Vinayak Kamath",
-  "handle"    : "@vinayakkam",
-  "specialty" : "Discord Bots 🤖",
-  "project"   : "OLIT Technologies 🌐",
-  "stack"     : ["Python", "Java", "HTML", "CSS"],
-  "hobbies"   : ["coding", "automating", "shipping"],
-  "status"    : "always building 🚀",
-}
-```
+<p align="center">
+<a href="https://github.com/vinayakkam/gitpilot"><img src="assets/project-gitpilot.svg" width="49%" alt="GitPilot"/></a>
+<a href="https://github.com/ANI-CPU-tech/LatchVerify"><img src="assets/project-latchverify.svg" width="49%" alt="LatchVerify"/></a>
+<a href="https://www.olittechnologies.co.in/bot/"><img src="assets/project-olit-bot.svg" width="49%" alt="OLIT Bot"/></a>
+<a href="https://github.com/vinayakkam/Project-Nexus"><img src="assets/project-olit-nexus.svg" width="49%" alt="OLIT Nexus"/></a>
+<a href="https://github.com/vinayakkam/twilight-desktop"><img src="assets/project-twilight.svg" width="49%" alt="Twilight"/></a>
+</p>
 
-</td>
-<td width="45%" valign="top">
+<p align="center"><a href="https://github.com/vinayakkam?tab=repositories"><b>All repositories →</b></a></p>
 
-### ⚡ Right Now
+<img src="assets/section-bot.svg" width="100%" alt="03 OLIT Bot"/>
 
-🤖 Building **Discord bots** — moderation, automation, utilities, the works
-
-🌐 Running **[OLIT Technologies](https://www.olittechnologies.co.in)**, my Discord dev project
-
-🔧 Into clean code, smart architecture & bot ecosystems
-
-☕ Java for OOP brain training
-
-</td>
-</tr>
-</table>
-
-## 🤖 OLIT Bot
+<a href="https://www.olittechnologies.co.in/bot/"><img src="assets/bot.svg" width="100%" alt="OLIT Bot: the Discord bot for space explorers"/></a>
 
 <div align="center">
 
-[![BOT STATUS](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=FF6B6B&center=true&vCenter=true&width=500&lines=🟢+OLIT+BOT+STATUS%3A+ONLINE;Advanced+Multifunctional+Discord+Bot;Games+%7C+Leaderboards+%7C+Galaxy+Explorer;discord.py+2.4%2B+%7C+Python+3.9%2B+%7C+24%2F7+✅)](https://git.io/typing-svg)
-
-![discord.py](https://img.shields.io/badge/discord.py-2.4%2B-E03C3C?style=flat-square&logo=discord&logoColor=white&labelColor=0D1117)
-![Python](https://img.shields.io/badge/Python-3.9%2B-E03C3C?style=flat-square&logo=python&logoColor=white&labelColor=0D1117)
-![Docker](https://img.shields.io/badge/Docker-ready-E03C3C?style=flat-square&logo=docker&logoColor=white&labelColor=0D1117)
-![Slash Commands](https://img.shields.io/badge/Slash%20%2B%20Prefix-commands-E03C3C?style=flat-square&logo=discord&logoColor=white&labelColor=0D1117)
+[![Invite OLIT Bot](https://img.shields.io/badge/Invite%20OLIT%20Bot-E03C3C?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1414168461172539454&permissions=8&integration_type=0&scope=applications.commands+bot)
+[![Dashboard](https://img.shields.io/badge/Dashboard-0D1117?style=for-the-badge&logo=googlechrome&logoColor=E03C3C)](https://www.olittechnologies.co.in/bot/dashboard.html)
+[![Support](https://img.shields.io/badge/Support%20server-0D1117?style=for-the-badge&logo=discord&logoColor=E03C3C)](https://discord.gg/J8ByjCcm5U)
 
 </div>
-
-> An advanced multifunctional Discord bot for entertainment, automation & community engagement — developed and owned by **OLIT Technologies**.
-
-<table>
-<tr>
-<td width="33%" valign="top">
-
-**🎮 Quick Games**
-
-🪨 Rock Paper Scissors<br/>
-🪙 Coin Flip<br/>
-🎲 Dice Roll<br/>
-🔢 Number Guess
-
-</td>
-<td width="33%" valign="top">
-
-**🧠 Brain & Space**
-
-🧮 Math Quiz<br/>
-🔤 Word Unscramble<br/>
-🎓 Space Trivia<br/>
-🥢 Booster Catch<br/>
-🌌 Galaxy Explorer
-
-</td>
-<td width="34%" valign="top">
-
-**🏆 Community**
-
-🏅 Per-server leaderboards + auto Leader role<br/>
-👋 Welcome embeds with avatars & member count<br/>
-😎 Keyword-triggered emoji reactions<br/>
-🌐 Multi-server, per-guild config
-
-</td>
-</tr>
-</table>
 
 <details>
 <summary><b>What each game does</b></summary>
@@ -118,46 +57,22 @@ me = {
 
 </details>
 
-## 🌐 OLIT Technologies
+<img src="assets/section-stack.svg" width="100%" alt="04 Tech Stack"/>
 
-<div align="center">
+<p align="center">
+<a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=py,ts,rust,java,html,css,react,tauri,flask,mysql&theme=dark" alt="Python, TypeScript, Rust, Java, HTML, CSS, React, Tauri, Flask, MySQL"/></a>
+<br/>
+<a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=nodejs,electron,qt,discord,docker,git,linux,arch,pycharm&theme=dark" alt="Node.js, Electron, Qt, Discord, Docker, Git, Linux, Arch, PyCharm"/></a>
+</p>
 
-[![OLIT](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&pause=2000&color=E03C3C&center=true&vCenter=true&width=500&lines=🌐+OLIT+TECHNOLOGIES;Discord+Development+·+Bot+Ecosystem;🔗+www.olittechnologies.co.in;Building+bots+%26+tools+for+communities+🚀)](https://www.olittechnologies.co.in)
+<img src="assets/section-stats.svg" width="100%" alt="05 GitHub Stats"/>
 
-</div>
+<img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/dashboard.svg" width="100%" alt="GitHub stats dashboard: rank, overview, top languages and 52-week contribution skyline"/>
 
-My personal Discord development project — where I build, experiment, and ship bots and tools for server communities. Turning creative ideas into working, deployed products.
+<img src="assets/section-flappy.svg" width="100%" alt="06 Flappy OLIT"/>
 
-## 🛠️ Tech Stack
-
-<div align="center">
-
-<a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=py,java,html,css,discord,docker,git,github,pycharm&theme=dark&perline=9" alt="Python, Java, HTML, CSS, Discord, Docker, Git, GitHub, PyCharm"/></a>
-
-</div>
-
-## 📊 GitHub Stats
-
-<div align="center">
-
-<img width="100%" src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/dashboard.svg" alt="GitHub stats dashboard: rank, overview, top languages and 52-week contribution skyline"/>
-
-</div>
-
-## 🐦 Flappy OLIT
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/flappy-bird.svg" alt="Flappy OLIT Bird Animation" width="100%"/>
-
-</div>
+<img src="https://raw.githubusercontent.com/vinayakkam/vinayakkam/output/flappy-bird.svg" width="100%" alt="Flappy OLIT Bird Animation"/>
 
 <br/>
 
-<div align="center">
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=14&pause=3000&color=E03C3C&center=true&vCenter=true&width=550&lines=%E2%98%85+Thanks+for+visiting!+Check+out+my+repos+below+%E2%98%85)](https://git.io/typing-svg)
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:E03C3C,100:8B0000&height=130&section=footer" width="100%"/>
+<img src="assets/footer.svg" width="100%" alt="Thanks for visiting — let's build something together"/>
