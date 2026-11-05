@@ -143,6 +143,28 @@ def rank_ring(level, pct, cx=140, cy=170, r=62):
     ]
 
 
+def stat_rows(s, x=280, y=92, w=270):
+    """Labelled counters with dotted leaders; each row slides in after the previous one."""
+    rows = [("STARS", s["stars"]), ("COMMITS", s["commits"]), ("PULL REQUESTS", s["prs"]),
+            ("MERGED PRS", s["merged"]), ("REVIEWS", s["reviews"]), ("CONTRIBUTED TO", s["contributed"])]
+    out = [f'<text x="{x}" y="{y - 14}" fill="{RED}" font-size="11" letter-spacing="2">// OVERVIEW</text>']
+    for i, (label, val) in enumerate(rows):
+        ry = y + 14 + i * 29
+        out.append(
+            f'<g opacity="0">'
+            f'<animate attributeName="opacity" to="1" begin="{0.3 + i * 0.12:.2f}s" dur=".5s" fill="freeze"/>'
+            f'<animateTransform attributeName="transform" type="translate" from="-12 0" to="0 0" '
+            f'begin="{0.3 + i * 0.12:.2f}s" dur=".5s" fill="freeze"/>'
+            f'<text x="{x}" y="{ry}" fill="{RED}" font-size="10">{i + 1:02d}</text>'
+            f'<text x="{x + 24}" y="{ry}" fill="{MUTED}" font-size="12">{label}</text>'
+            f'<line x1="{x + 30 + len(label) * 7.3:.0f}" y1="{ry - 4}" x2="{x + w - 52}" y2="{ry - 4}" '
+            f'stroke="{BORDER}" stroke-dasharray="1 4"/>'
+            f'<text x="{x + w}" y="{ry}" fill="{TEXT}" font-size="14" font-weight="700" '
+            f'text-anchor="end">{fmt(val)}</text>'
+            f'</g>')
+    return out
+
+
 def render(s):
     level, pct = rank(s)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -172,6 +194,7 @@ def render(s):
         f'<line x1="20" y1="52" x2="{W - 20}" y2="52" stroke="{BORDER}"/>',
     ]
     parts += rank_ring(level, pct)
+    parts += stat_rows(s)
     parts.append('</svg>')
     return "\n".join(parts)
 
