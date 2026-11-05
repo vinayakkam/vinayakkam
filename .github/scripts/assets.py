@@ -4,6 +4,7 @@ Run after editing: python3 .github/scripts/assets.py
 Shares palette and the reveal() animation helper with dashboard.py.
 """
 import os
+import random
 import textwrap
 from xml.sax.saxutils import escape as esc
 
@@ -239,7 +240,58 @@ def project(i, name, status, desc, tech, meta):
     return svg(w, h, f"{name}: {desc}", b)
 
 
-ASSETS = {"hero.svg": hero, "about.svg": about}
+def starfield(w, h, n=70, seed=42, top=56):
+    rnd = random.Random(seed)
+    out = []
+    for _ in range(n):
+        x, y, r = rnd.uniform(10, w - 10), rnd.uniform(top + 6, h - 10), rnd.choice([.6, .8, 1, 1.4])
+        col = rnd.choice([TEXT, TEXT, MUTED, ACCENT])
+        out.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{col}" opacity=".5">'
+                   f'<animate attributeName="opacity" values=".5;.1;.5" dur="{rnd.uniform(2, 5):.1f}s" '
+                   f'begin="{rnd.uniform(0, 3):.1f}s" repeatCount="indefinite"/></circle>')
+    return out
+
+
+def bot():
+    """OLIT Bot showcase. Copy and numbers from olittechnologies.co.in/bot."""
+    w, h = 900, 320
+    b = window(w, h, "OLIT Bot — discord.py")
+    b += starfield(w, h)
+    b.append(f'<circle cx="46" cy="94" r="5" fill="{ACCENT}" filter="url(#glow)">'
+             f'<animate attributeName="r" values="5;7;5" dur="1.6s" repeatCount="indefinite"/></circle>'
+             f'<text x="60" y="99" fill="{ACCENT}" font-size="12" letter-spacing="2">ONLINE</text>')
+    b.append(f'<text x="40" y="138" fill="{TEXT}" font-size="21" font-weight="800">The Discord bot</text>'
+             f'<text x="40" y="164" fill="{TEXT}" font-size="21" font-weight="800">for <tspan fill="{RED}">'
+             f'space explorers</tspan>.</text>')
+    tiles = [("15+", "MINI GAMES"), ("1000+", "STAR SYSTEMS"), ("60+", "TRIVIA QS"), ("∞", "ADVENTURES")]
+    for i, (num, label) in enumerate(tiles):
+        x = 40 + i * 112
+        b.append(f'<g>{reveal(0.3 + i * 0.12, dy=8)}'
+                 f'<rect x="{x}" y="190" width="102" height="64" rx="8" fill="{PANEL}" stroke="{BORDER}"/>'
+                 f'<text x="{x + 51}" y="223" fill="{ACCENT}" font-size="22" font-weight="800" '
+                 f'text-anchor="middle">{num}</text>'
+                 f'<text x="{x + 51}" y="243" fill="{MUTED}" font-size="9" text-anchor="middle" '
+                 f'letter-spacing="1">{label}</text></g>')
+    b.append(f'<text x="40" y="286" fill="{MUTED}" font-size="11">discord.py 2.4+ <tspan fill="{RED}">·</tspan> '
+             f'Python 3.9+ <tspan fill="{RED}">·</tspan> Docker <tspan fill="{RED}">·</tspan> '
+             f'slash + prefix</text>')
+    b.append(f'<line x1="520" y1="72" x2="520" y2="{h - 24}" stroke="{BORDER}"/>')
+    b.append(f'<text x="546" y="96" fill="{RED}" font-size="11" letter-spacing="2">// FEATURES</text>')
+    feats = [("Galaxy Explorer", "RPG · ships · boss battles"), ("15+ games", "trivia, booster catch, RPS…"),
+             ("Auto-moderation", "word filters, no restarts"), ("Leaderboards", "per-server, auto roles"),
+             ("Custom commands", "from the dashboard"), ("Welcome system", "greets new members")]
+    for i, (name, sub) in enumerate(feats):
+        y = 128 + i * 30
+        b.append(f'<g>{reveal(0.6 + i * 0.12, dx=-8)}'
+                 f'<text x="546" y="{y}" fill="{RED}" font-size="10">{i + 1:02d}</text>'
+                 f'<text x="572" y="{y}" fill="{TEXT}" font-size="13">{esc(name)}</text>'
+                 f'<text x="{w - 32}" y="{y}" fill="{MUTED}" font-size="10" text-anchor="end">{esc(sub)}</text>'
+                 '</g>')
+    return svg(w, h, "OLIT Bot: the Discord bot for space explorers. 15+ games, Galaxy Explorer, "
+                     "auto-moderation, leaderboards, custom commands, welcome system", b)
+
+
+ASSETS = {"hero.svg": hero, "about.svg": about, "bot.svg": bot}
 for _i, (_slug, *_rest) in enumerate(PROJECTS, 1):
     ASSETS[f"project-{_slug}.svg"] = lambda i=_i, r=tuple(_rest): project(i, *r)
 for _i, (_slug, _title, _tag) in enumerate(SECTIONS, 1):
