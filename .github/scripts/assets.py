@@ -291,7 +291,38 @@ def bot():
                      "auto-moderation, leaderboards, custom commands, welcome system", b)
 
 
-ASSETS = {"hero.svg": hero, "about.svg": about, "bot.svg": bot}
+def footer():
+    """Closing card: two drifting sine waves (signal trace) under a sign-off line."""
+    import math
+    w, h = 900, 170
+
+    def wave(amp, period, y0):
+        # Two periods wider than the card, so translating by one period loops seamlessly.
+        pts = [f"{x},{y0 + amp * math.sin(2 * math.pi * x / period):.1f}" for x in range(-period, w + period, 6)]
+        return "M" + " L".join(pts)
+
+    b = [
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="14" fill="{BG}" stroke="{BORDER}"/>',
+        f'<g opacity=".9"><path d="{wave(10, 180, 120)}" fill="none" stroke="{DARK}" stroke-width="2">'
+        f'<animateTransform attributeName="transform" type="translate" values="0 0;180 0" dur="9s" '
+        f'repeatCount="indefinite"/></path>'
+        f'<path d="{wave(7, 120, 122)}" fill="none" stroke="{RED}" stroke-width="1.5" opacity=".8">'
+        f'<animateTransform attributeName="transform" type="translate" values="0 0;-120 0" dur="6s" '
+        f'repeatCount="indefinite"/></path></g>',
+        f'<text x="{w / 2}" y="52" fill="{MUTED}" font-size="13" text-anchor="middle">'
+        f'<tspan fill="{RED}">$</tspan> exit</text>',
+        f'<text x="{w / 2}" y="82" fill="{TEXT}" font-size="17" font-weight="700" text-anchor="middle">'
+        f'Thanks for visiting <tspan fill="{RED}">·</tspan> let\'s build something together</text>',
+        f'<text x="{w / 2}" y="{h - 16}" fill="{MUTED}" font-size="10" text-anchor="middle" letter-spacing="1">'
+        f'OLIT TECHNOLOGIES · MANGALURU, INDIA</text>',
+    ]
+    # Clip waves to the card's rounded rectangle.
+    b.insert(0, f'<defs><clipPath id="card"><rect width="{w}" height="{h}" rx="14"/></clipPath></defs>')
+    b[2] = b[2].replace('<g opacity=".9">', '<g opacity=".9" clip-path="url(#card)">')
+    return svg(w, h, "Thanks for visiting — let's build something together", b)
+
+
+ASSETS = {"hero.svg": hero, "about.svg": about, "bot.svg": bot, "footer.svg": footer}
 for _i, (_slug, *_rest) in enumerate(PROJECTS, 1):
     ASSETS[f"project-{_slug}.svg"] = lambda i=_i, r=tuple(_rest): project(i, *r)
 for _i, (_slug, _title, _tag) in enumerate(SECTIONS, 1):
