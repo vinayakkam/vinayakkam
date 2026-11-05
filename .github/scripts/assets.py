@@ -108,8 +108,8 @@ def hero():
     return svg(w, h, "Vinayak Kamath — AI Engineering Student, Founder of OLIT Technologies", b)
 
 
-SECTIONS = [("about", "ABOUT", "profile.py"), ("bot", "OLIT BOT", "discord.py"),
-            ("olit", "OLIT TECHNOLOGIES", "olittechnologies.co.in"), ("stack", "TECH STACK", "toolchain"),
+SECTIONS = [("about", "ABOUT", "profile.py"), ("projects", "PROJECTS", "shipped & building"),
+            ("bot", "OLIT BOT", "discord.py"), ("stack", "TECH STACK", "toolchain"),
             ("stats", "GITHUB STATS", "live · daily"), ("flappy", "FLAPPY OLIT", "live · hourly")]
 
 
