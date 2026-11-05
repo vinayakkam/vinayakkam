@@ -28,7 +28,7 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: top-langs
-          options: username=vinayakkam&layout=compact&langs_count=6&hide_border=true&border_radius=10&bg_color=0D1117&title_color=E03C3C&text_color=C9D1D9
+          options: username=vinayakkam&layout=compact&langs_count=8&card_width=380&border_radius=12&border_color=30363D&bg_color=0D1117&title_color=E03C3C&text_color=C9D1D9
           path: dist/top-langs.svg
           token: ${{ secrets.GH_STATS_PAT || secrets.GITHUB_TOKEN }}
           fail_on_error: true
