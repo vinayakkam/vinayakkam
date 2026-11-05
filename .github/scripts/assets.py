@@ -164,7 +164,7 @@ def about():
     b.append(f'<line x1="560" y1="64" x2="560" y2="{h - 20}" stroke="{BORDER}"/>')
     b.append(f'<text x="584" y="88" fill="{RED}" font-size="11" letter-spacing="2">// PROJECTS.LOG</text>')
     log = [("GitPilot", "v0.5.1"), ("LatchVerify", "MCP proxy"), ("OLIT Bot", "live"),
-           ("OLIT Nexus", "local AI"), ("Twilight", "Hyprland"), ("RaptorFX", "WIP")]
+           ("OLIT Nexus", "local AI"), ("Twilight", "Hyprland")]
     for i, (name, tag) in enumerate(log):
         y = 120 + i * 28
         b.append(f'<g>{reveal(0.9 + i * 0.15, dx=-8)}'
@@ -181,6 +181,7 @@ def about():
 
 
 # (slug, name, status, description, tech, meta). Facts from each repo's README and olittechnologies.co.in.
+# README links LatchVerify to github.com/ANI-CPU-tech/LatchVerify (upstream), not the vinayakkam fork.
 PROJECTS = [
     ("gitpilot", "GitPilot", "v0.5.1",
      "Desktop Git manager. Shows exactly what changed, stages down to single lines and explains Git "
@@ -197,9 +198,6 @@ PROJECTS = [
     ("twilight", "Twilight", "DESKTOP",
      "A Windows 11-style desktop for Hyprland: top bar, centred taskbar, Start menu, Settings app and "
      "lock screen.", ["QML", "Quickshell", "Hyprland"], "Linux desktop shell"),
-    ("raptorfx", "RaptorFX", "WIP",
-     "Raptor-inspired methalox exhaust for Kerbal Space Program, with raymarched shaders for plume and "
-     "shock diamonds.", ["C#", "Waterfall", "KSP 1.12.5"], "game mod"),
 ]
 
 
