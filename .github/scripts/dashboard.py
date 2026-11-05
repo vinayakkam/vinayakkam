@@ -114,6 +114,35 @@ def fmt(n):
     return f"{n / 1000:.1f}k".replace(".0k", "k") if n >= 1000 else str(n)
 
 
+def rank_ring(level, pct, cx=140, cy=170, r=62):
+    """Rank letter in a ring that fills to (100 - percentile)%, inside a slowly turning tick ring."""
+    circ = 2 * 3.14159265 * r
+    fill = circ * max(0.04, (100 - pct) / 100)
+    ticks = "".join(
+        f'<line x1="{cx}" y1="{cy - r - 14}" x2="{cx}" y2="{cy - r - (20 if i % 6 == 0 else 17)}" '
+        f'stroke="{RED if i % 6 == 0 else BORDER}" stroke-width="2" transform="rotate({i * 7.5} {cx} {cy})"/>'
+        for i in range(48))
+    return [
+        '<g>',
+        f'<g opacity=".9">{ticks}<animateTransform attributeName="transform" type="rotate" '
+        f'from="0 {cx} {cy}" to="360 {cx} {cy}" dur="60s" repeatCount="indefinite"/></g>',
+        f'<circle cx="{cx}" cy="{cy}" r="{r + 26}" fill="none" stroke="{RED}" stroke-opacity=".06" stroke-width="14"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{PANEL}" stroke="{BORDER}" stroke-width="10"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="url(#ring)" stroke-width="10" '
+        f'stroke-linecap="round" stroke-dasharray="{fill:.1f} {circ:.1f}" transform="rotate(-90 {cx} {cy})" '
+        f'filter="url(#glow)">'
+        f'<animate attributeName="stroke-dasharray" from="0 {circ:.1f}" to="{fill:.1f} {circ:.1f}" '
+        f'dur="1.6s" calcMode="spline" keySplines=".2 .8 .2 1" keyTimes="0;1"/></circle>',
+        f'<text x="{cx}" y="{cy + 15}" fill="{TEXT}" font-size="44" font-weight="700" '
+        f'text-anchor="middle">{level}</text>',
+        f'<text x="{cx}" y="{cy - 26}" fill="{MUTED}" font-size="10" text-anchor="middle" '
+        f'letter-spacing="2">RANK</text>',
+        f'<text x="{cx}" y="{cy + r + 46}" fill="{MUTED}" font-size="11" text-anchor="middle">'
+        f'TOP <tspan fill="{ACCENT}" font-weight="700">{pct:.1f}%</tspan></text>',
+        '</g>',
+    ]
+
+
 def render(s):
     level, pct = rank(s)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -124,6 +153,11 @@ def render(s):
         '<defs>',
         f'<pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">'
         f'<circle cx="1" cy="1" r="1" fill="{BORDER}" opacity=".55"/></pattern>',
+        f'<linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">'
+        f'<stop offset="0" stop-color="{ACCENT}"/><stop offset="1" stop-color="{DARK}"/></linearGradient>',
+        '<filter id="glow" x="-30%" y="-30%" width="160%" height="160%">'
+        '<feGaussianBlur stdDeviation="3" result="b"/>'
+        '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>',
         '</defs>',
         f'<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="14" fill="{BG}" stroke="{BORDER}"/>',
         f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="url(#dots)"/>',
@@ -132,11 +166,12 @@ def render(s):
         f'<circle cx="28" cy="28" r="5" fill="{RED}"/><circle cx="46" cy="28" r="5" fill="{DARK}"/>'
         f'<circle cx="64" cy="28" r="5" fill="{BORDER}"/>'
         f'<text x="86" y="32.5" fill="{RED}">{USER}@github<tspan fill="{MUTED}">:~$</tspan>'
-        f'<tspan fill="{TEXT}"> ./stats --live</tspan></text>'
+        f'<tspan fill="{TEXT}" dx="8">./stats --live</tspan></text>'
         f'<text x="{W - 28}" y="32.5" fill="{MUTED}" text-anchor="end" font-size="11">SYNC {now}</text>'
         f'</g>',
         f'<line x1="20" y1="52" x2="{W - 20}" y2="52" stroke="{BORDER}"/>',
     ]
+    parts += rank_ring(level, pct)
     parts.append('</svg>')
     return "\n".join(parts)
 
