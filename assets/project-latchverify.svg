@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" role="img" aria-label="LatchVerify: Security proxy for MCP servers. Pins each tool's capabilities in a git-committed lockfile and blocks rug pulls.">
+<title>LatchVerify: Security proxy for MCP servers. Pins each tool's capabilities in a git-committed lockfile and blocks rug pulls.</title>
+<rect x=".5" y=".5" width="439" height="199" rx="12" fill="#0D1117" stroke="#30363D"/>
+<path d="M12 28V12h16M412 12h16v16M12 172v16h16M412 188h16v-16" fill="none" stroke="#E03C3C" stroke-width="1.5" opacity=".7"/>
+<text x="28" y="44" fill="#E03C3C" font-size="12" font-weight="700">02</text>
+<text x="56" y="44" fill="#C9D1D9" font-size="18" font-weight="700">LatchVerify</text>
+<rect x="324" y="29" width="88" height="20" rx="10" fill="#161B22" stroke="#30363D"/><circle cx="334" cy="39" r="3" fill="#FF6B6B"><animate attributeName="opacity" values="1;.25;1" dur="1.6s" begin="0.6s" repeatCount="indefinite"/></circle><text x="373" y="43" fill="#C9D1D9" font-size="10" text-anchor="middle" letter-spacing=".5">PROTOTYPE</text>
+<text x="28" y="78" fill="#8B949E" font-size="12">Security proxy for MCP servers. Pins each tool's</text>
+<text x="28" y="97" fill="#8B949E" font-size="12">capabilities in a git-committed lockfile and blocks</text>
+<text x="28" y="116" fill="#8B949E" font-size="12">rug pulls.</text>
+<rect x="28" y="134" width="90" height="22" rx="5" fill="#161B22" stroke="#30363D"/><text x="73" y="149" fill="#FF6B6B" font-size="11" text-anchor="middle">TypeScript</text>
+<rect x="126.4" y="134" width="48" height="22" rx="5" fill="#161B22" stroke="#30363D"/><text x="150" y="149" fill="#FF6B6B" font-size="11" text-anchor="middle">Node</text>
+<rect x="182.56" y="134" width="76" height="22" rx="5" fill="#161B22" stroke="#30363D"/><text x="221" y="149" fill="#FF6B6B" font-size="11" text-anchor="middle">Electron</text>
+<text x="36" y="182" fill="#8B949E" font-size="10"><tspan fill="#E03C3C">›</tspan> co-built with ANI-CPU-tech · MIT</text>
+<defs><linearGradient id="sw"><stop offset="0" stop-color="#E03C3C" stop-opacity="0"/><stop offset=".5" stop-color="#FF6B6B"/><stop offset="1" stop-color="#E03C3C" stop-opacity="0"/></linearGradient></defs><rect x="40" y="0" width="90" height="1.5" fill="url(#sw)"><animate attributeName="x" values="40;310" dur="5s" begin="1.0s" repeatCount="indefinite"/></rect>
+</svg>

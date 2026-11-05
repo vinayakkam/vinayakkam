@@ -4,6 +4,7 @@ Run after editing: python3 .github/scripts/assets.py
 Shares palette and the reveal() animation helper with dashboard.py.
 """
 import os
+import textwrap
 from xml.sax.saxutils import escape as esc
 
 from dashboard import ACCENT, BG, BORDER, DARK, FONT, MUTED, PANEL, RED, TEXT, reveal
@@ -178,7 +179,69 @@ def about():
     return svg(w, h, "About: K Vinayak Kamath, AI engineering student in Mangaluru, building OLIT Technologies", b)
 
 
+# (slug, name, status, description, tech, meta). Facts from each repo's README and olittechnologies.co.in.
+PROJECTS = [
+    ("gitpilot", "GitPilot", "v0.5.1",
+     "Desktop Git manager. Shows exactly what changed, stages down to single lines and explains Git "
+     "errors in plain language.", ["Rust", "Tauri 2", "React"], "Windows + Linux · signed auto-updates"),
+    ("latchverify", "LatchVerify", "PROTOTYPE",
+     "Security proxy for MCP servers. Pins each tool's capabilities in a git-committed lockfile and "
+     "blocks rug pulls.", ["TypeScript", "Node", "Electron"], "co-built with ANI-CPU-tech · MIT"),
+    ("olit-bot", "OLIT Bot", "LIVE",
+     "The Discord bot for space explorers: 15+ games, Galaxy Explorer RPG, auto-moderation and a "
+     "web dashboard.", ["Python", "discord.py"], "olittechnologies.co.in/bot"),
+    ("olit-nexus", "OLIT Nexus", "LOCAL",
+     "Self-hosted AI console. Chat, attach PDFs, images or text, toggle web search. Runs entirely on "
+     "your own machine.", ["Python", "Qwen2.5-Coder"], "no cloud · no billing"),
+    ("twilight", "Twilight", "DESKTOP",
+     "A Windows 11-style desktop for Hyprland: top bar, centred taskbar, Start menu, Settings app and "
+     "lock screen.", ["QML", "Quickshell", "Hyprland"], "Linux desktop shell"),
+    ("raptorfx", "RaptorFX", "WIP",
+     "Raptor-inspired methalox exhaust for Kerbal Space Program, with raymarched shaders for plume and "
+     "shock diamonds.", ["C#", "Waterfall", "KSP 1.12.5"], "game mod"),
+]
+
+
+def project(i, name, status, desc, tech, meta):
+    w, h = 440, 200
+    b = [
+        f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="12" fill="{BG}" stroke="{BORDER}"/>',
+        # Corner brackets, HUD style.
+        f'<path d="M12 28V12h16M{w - 28} 12h16v16M12 {h - 28}v16h16M{w - 28} {h - 12}h16v-16" '
+        f'fill="none" stroke="{RED}" stroke-width="1.5" opacity=".7"/>',
+        f'<text x="28" y="44" fill="{RED}" font-size="12" font-weight="700">{i:02d}</text>',
+        f'<text x="56" y="44" fill="{TEXT}" font-size="18" font-weight="700">{esc(name)}</text>',
+    ]
+    sw = len(status) * 10 * 0.64 + 30
+    b.append(f'<rect x="{w - 28 - sw:.0f}" y="29" width="{sw:.0f}" height="20" rx="10" fill="{PANEL}" '
+             f'stroke="{BORDER}"/><circle cx="{w - 28 - sw + 10:.0f}" cy="39" r="3" fill="{ACCENT}">'
+             f'<animate attributeName="opacity" values="1;.25;1" dur="1.6s" begin="{i * .3:.1f}s" '
+             f'repeatCount="indefinite"/></circle>'
+             f'<text x="{w - 28 - sw / 2 + 5:.0f}" y="43" fill="{TEXT}" font-size="10" text-anchor="middle" '
+             f'letter-spacing=".5">{esc(status)}</text>')
+    for j, line in enumerate(textwrap.wrap(desc, 52)[:3]):
+        b.append(f'<text x="28" y="{78 + j * 19}" fill="{MUTED}" font-size="12">{esc(line)}</text>')
+    x = 28
+    for t in tech:
+        tw = len(t) * 11 * 0.64 + 20
+        b.append(f'<rect x="{x}" y="{h - 66}" width="{tw:.0f}" height="22" rx="5" fill="{PANEL}" stroke="{BORDER}"/>'
+                 f'<text x="{x + tw / 2:.0f}" y="{h - 51}" fill="{ACCENT}" font-size="11" '
+                 f'text-anchor="middle">{esc(t)}</text>')
+        x += tw + 8
+    b.append(f'<text x="36" y="{h - 18}" fill="{MUTED}" font-size="10"><tspan fill="{RED}">›</tspan> '
+             f'{esc(meta)}</text>')
+    # Light sweeping along the top edge.
+    b.append(f'<defs><linearGradient id="sw"><stop offset="0" stop-color="{RED}" stop-opacity="0"/>'
+             f'<stop offset=".5" stop-color="{ACCENT}"/><stop offset="1" stop-color="{RED}" stop-opacity="0"/>'
+             f'</linearGradient></defs>'
+             f'<rect x="40" y="0" width="90" height="1.5" fill="url(#sw)"><animate attributeName="x" '
+             f'values="40;{w - 130}" dur="5s" begin="{i * .5:.1f}s" repeatCount="indefinite"/></rect>')
+    return svg(w, h, f"{name}: {desc}", b)
+
+
 ASSETS = {"hero.svg": hero, "about.svg": about}
+for _i, (_slug, *_rest) in enumerate(PROJECTS, 1):
+    ASSETS[f"project-{_slug}.svg"] = lambda i=_i, r=tuple(_rest): project(i, *r)
 for _i, (_slug, _title, _tag) in enumerate(SECTIONS, 1):
     ASSETS[f"section-{_slug}.svg"] = lambda i=_i, t=_title, g=_tag: section(i, t, g)
 
