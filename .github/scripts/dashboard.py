@@ -270,7 +270,8 @@ def skyline(s, x0=30, x1=870, top=300, base=425, hmax=70):
     out.append(f'<text x="{x0}" y="{base + 20}" fill="{MUTED}" font-size="10">52 WEEKS AGO</text>')
     out.append(f'<text x="{(x0 + x1) / 2}" y="{base + 21}" fill="{MUTED}" font-size="11" text-anchor="middle">'
                f'ALL-TIME <tspan fill="{ACCENT}" font-weight="700">{s["all_time"]:,}</tspan> CONTRIBUTIONS '
-               f'<tspan fill="{RED}">·</tspan> SINCE {s["since"]}</text>')
+               f'<tspan fill="{RED}">·</tspan> <tspan fill="{ACCENT}" font-weight="700">{s["commits"]:,}</tspan> '
+               f'COMMITS <tspan fill="{RED}">·</tspan> SINCE {s["since"]}</text>')
     out.append(f'<text x="{x1}" y="{base + 20}" fill="{MUTED}" font-size="10" text-anchor="end">NOW</text>')
     return out
 
