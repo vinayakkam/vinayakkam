@@ -114,6 +114,18 @@ def fmt(n):
     return f"{n / 1000:.1f}k".replace(".0k", "k") if n >= 1000 else str(n)
 
 
+def reveal(delay, dur=0.5, dx=0, dy=0):
+    """Fade (and optionally slide) in after `delay` s. Starts at 0s and holds via keyTimes, so the
+    element's resting state stays visible in renderers that ignore animation."""
+    total = delay + dur
+    k = f'keyTimes="0;{delay / total:.3f};1" dur="{total:.2f}s" fill="freeze"'
+    out = f'<animate attributeName="opacity" values="0;0;1" {k}/>'
+    if dx or dy:
+        out += (f'<animateTransform attributeName="transform" type="translate" '
+                f'values="{dx} {dy};{dx} {dy};0 0" {k}/>')
+    return out
+
+
 def rank_ring(level, pct, cx=140, cy=170, r=62):
     """Rank letter in a ring that fills to (100 - percentile)%, inside a slowly turning tick ring."""
     circ = 2 * 3.14159265 * r
@@ -151,10 +163,7 @@ def stat_rows(s, x=280, y=92, w=270):
     for i, (label, val) in enumerate(rows):
         ry = y + 14 + i * 29
         out.append(
-            f'<g opacity="0">'
-            f'<animate attributeName="opacity" to="1" begin="{0.3 + i * 0.12:.2f}s" dur=".5s" fill="freeze"/>'
-            f'<animateTransform attributeName="transform" type="translate" from="-12 0" to="0 0" '
-            f'begin="{0.3 + i * 0.12:.2f}s" dur=".5s" fill="freeze"/>'
+            f'<g>{reveal(0.3 + i * 0.12, dx=-12)}'
             f'<text x="{x}" y="{ry}" fill="{RED}" font-size="10">{i + 1:02d}</text>'
             f'<text x="{x + 24}" y="{ry}" fill="{MUTED}" font-size="12">{label}</text>'
             f'<line x1="{x + 30 + len(label) * 7.3:.0f}" y1="{ry - 4}" x2="{x + w - 52}" y2="{ry - 4}" '
