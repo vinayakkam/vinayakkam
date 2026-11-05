@@ -70,11 +70,13 @@ def hero():
                  f'values="{40 + dx};{40 + dx};{40 + dx * 3};{40 - dx};{40 + dx};{40 + dx}" '
                  f'keyTimes="0;.9;.92;.94;.96;1" dur="5s" repeatCount="indefinite"/></text>')
     b.append(f'<text x="40" y="150" fill="{TEXT}" font-size="50" font-weight="800" letter-spacing="2">{name}</text>')
-    b.append(f'<text x="42" y="182" fill="{MUTED}" font-size="15">Discord Bot Developer '
+    b.append(f'<text x="42" y="182" fill="{MUTED}" font-size="15">AI Engineering Student '
              f'<tspan fill="{RED}">·</tspan> Founder of <tspan fill="{ACCENT}">OLIT Technologies</tspan></text>')
     b.append(f'<text x="40" y="232" fill="{MUTED}" font-size="14"><tspan fill="{RED}">$</tspan> cat now.txt</text>')
-    b += typed_cycle(40, 262, ["I build Discord bots.", "Python | Java | HTML | CSS",
-                               "Founder of OLIT Technologies.", "Always learning, always shipping."],
+    b += typed_cycle(40, 262, ["I build bots, dev tools and AI experiences.",
+                               "Shipping GitPilot · OLIT Bot · LatchVerify",
+                               "BE Artificial Intelligence · Mangaluru, IN",
+                               "Let's build something together."],
                      color=ACCENT)
     # Orbit emblem on the right: two counter-rotating dashed rings around a pulsing core.
     cx, cy = 760, 160
@@ -98,12 +100,12 @@ def hero():
         f'</g>')
     # Live status pill.
     b.append(
-        f'<rect x="{cx - 76}" y="{cy + 98}" width="152" height="24" rx="12" fill="{PANEL}" stroke="{BORDER}"/>'
-        f'<circle cx="{cx - 60}" cy="{cy + 110}" r="4" fill="{ACCENT}">'
+        f'<rect x="{cx - 94}" y="{cy + 98}" width="188" height="24" rx="12" fill="{PANEL}" stroke="{BORDER}"/>'
+        f'<circle cx="{cx - 78}" cy="{cy + 110}" r="4" fill="{ACCENT}">'
         f'<animate attributeName="opacity" values="1;.25;1" dur="1.6s" repeatCount="indefinite"/></circle>'
         f'<text x="{cx + 8}" y="{cy + 114}" fill="{TEXT}" font-size="11" text-anchor="middle" '
-        f'letter-spacing="1">ALWAYS BUILDING</text>')
-    return svg(w, h, "Vinayak Kamath — Discord Bot Developer, Founder of OLIT Technologies", b)
+        f'letter-spacing="1">OPEN TO OPPORTUNITIES</text>')
+    return svg(w, h, "Vinayak Kamath — AI Engineering Student, Founder of OLIT Technologies", b)
 
 
 SECTIONS = [("about", "ABOUT", "profile.py"), ("bot", "OLIT BOT", "discord.py"),
