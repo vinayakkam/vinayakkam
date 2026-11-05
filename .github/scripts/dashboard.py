@@ -196,6 +196,66 @@ def languages(langs, x=600, y=92, w=270, n=6):
     return out
 
 
+def streaks(days):
+    """(current, longest) runs of days with contributions. Today may still be 0 without breaking it."""
+    counts = [c for _, c in days]
+    longest = run = 0
+    for c in counts:
+        run = run + 1 if c else 0
+        longest = max(longest, run)
+    tail = counts[:-1] if counts and not counts[-1] else counts
+    current = 0
+    for c in reversed(tail):
+        if not c:
+            break
+        current += 1
+    return current, longest
+
+
+def skyline(s, x0=30, x1=870, top=300, base=425, hmax=70):
+    """Last 52 weeks as an isometric city: one tower per week, height = contributions, rising in."""
+    counts = [c for _, c in s["days"]][-364:]
+    weeks = [sum(counts[i:i + 7]) for i in range(0, len(counts), 7)]
+    peak = max(weeks) or 1
+    cur, best = streaks(s["days"])
+    step, fw, dx, dy = (x1 - x0 - 6) / len(weeks), 10, 5, 3
+    out = [
+        f'<line x1="20" y1="{top}" x2="{W - 20}" y2="{top}" stroke="{BORDER}"/>',
+        f'<text x="{x0}" y="{top + 24}" fill="{RED}" font-size="11" letter-spacing="2">// 52-WEEK SKYLINE</text>',
+        f'<text x="{x1}" y="{top + 24}" fill="{MUTED}" font-size="11" text-anchor="end">'
+        f'<tspan fill="{TEXT}" font-weight="700">{s["total_contrib"]:,}</tspan> CONTRIBUTIONS · STREAK '
+        f'<tspan fill="{ACCENT}" font-weight="700">{cur}d</tspan> · BEST '
+        f'<tspan fill="{TEXT}" font-weight="700">{best}d</tspan></text>',
+        f'<line x1="{x0 - 4}" y1="{base + .5}" x2="{x1 + 2}" y2="{base + .5}" stroke="{BORDER}"/>',
+    ]
+    peak_i = weeks.index(max(weeks))
+    for i, c in enumerate(weeks):
+        q = c / peak
+        h = max(2, q * hmax)
+        front, side, cap = (
+            (PANEL, BORDER, BORDER) if c == 0 else
+            (DARK, "#5A0000", "#A82424") if q < .34 else
+            (RED, DARK, ACCENT) if q < .67 else
+            (ACCENT, RED, "#FFB3B3"))
+        x = x0 + i * step
+        d = 0.8 + i * 0.025
+        k = f'keyTimes="0;{d / (d + .6):.3f};1" dur="{d + .6:.2f}s" fill="freeze"'
+        out.append(
+            f'<g transform="translate({x:.1f} {base})"><g{" filter=\"url(#glow)\"" if q >= .67 else ""}>'
+            f'<animateTransform attributeName="transform" type="scale" values="1 0;1 0;1 1" '
+            f'calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1" {k}/>'
+            f'<polygon points="{fw},0 {fw + dx},{-dy} {fw + dx},{-dy - h:.1f} {fw},{-h:.1f}" fill="{side}"/>'
+            f'<polygon points="0,{-h:.1f} {dx},{-h - dy:.1f} {fw + dx},{-h - dy:.1f} {fw},{-h:.1f}" fill="{cap}"/>'
+            f'<rect y="{-h:.1f}" width="{fw}" height="{h:.1f}" fill="{front}"/>'
+            f'</g></g>')
+    px = x0 + peak_i * step + (fw + dx) / 2
+    out.append(f'<text x="{px:.1f}" y="{base - hmax - 10}" fill="{ACCENT}" font-size="10" text-anchor="middle">'
+               f'{reveal(2.4)}▲ {max(weeks)}</text>')
+    out.append(f'<text x="{x0}" y="{base + 20}" fill="{MUTED}" font-size="10">52 WEEKS AGO</text>')
+    out.append(f'<text x="{x1}" y="{base + 20}" fill="{MUTED}" font-size="10" text-anchor="end">NOW</text>')
+    return out
+
+
 def render(s):
     level, pct = rank(s)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -227,6 +287,7 @@ def render(s):
     parts += rank_ring(level, pct)
     parts += stat_rows(s)
     parts += languages(s["langs"])
+    parts += skyline(s)
     parts.append('</svg>')
     return "\n".join(parts)
 
@@ -234,6 +295,8 @@ def render(s):
 if __name__ == "__main__":
     if "--demo" in sys.argv:
         assert rank({k: 0 for k in ("commits", "prs", "issues", "reviews", "stars", "followers")})[0] == "C"
+        assert streaks([("a", 1), ("b", 0), ("c", 2), ("d", 3), ("e", 0)]) == (2, 2)
+        assert streaks([("a", 1), ("b", 1), ("c", 1), ("d", 0), ("e", 0)]) == (0, 3)
         assert rank({k: 10 ** 6 for k in ("commits", "prs", "issues", "reviews", "stars", "followers")})[0] == "S"
         stats = demo()
     else:
