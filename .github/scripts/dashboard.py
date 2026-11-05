@@ -174,6 +174,28 @@ def stat_rows(s, x=280, y=92, w=270):
     return out
 
 
+def languages(langs, x=600, y=92, w=270, n=6):
+    """Top languages by bytes as bars that grow in, shaded from accent to dark red by rank."""
+    total = sum(langs.values()) or 1
+    top = sorted(langs.items(), key=lambda kv: -kv[1])[:n]
+    shades = [ACCENT, RED, "#C62F2F", "#A82424", DARK, "#6E0A0A"]
+    out = [f'<text x="{x}" y="{y - 14}" fill="{RED}" font-size="11" letter-spacing="2">// LANGUAGES</text>']
+    for i, (name, size) in enumerate(top):
+        ry, p = y + 14 + i * 29, size / total
+        bw = max(3, w * p / (top[0][1] / total))  # longest bar spans the column
+        d = 0.5 + i * 0.12
+        out.append(
+            f'<g>{reveal(d)}'
+            f'<text x="{x}" y="{ry}" fill="{TEXT}" font-size="12">{name}</text>'
+            f'<text x="{x + w}" y="{ry}" fill="{MUTED}" font-size="11" text-anchor="end">{p * 100:.1f}%</text>'
+            f'<rect x="{x}" y="{ry + 6}" width="{w}" height="4" rx="2" fill="{PANEL}"/>'
+            f'<rect x="{x}" y="{ry + 6}" width="{bw:.1f}" height="4" rx="2" fill="{shades[i % len(shades)]}">'
+            f'<animate attributeName="width" values="0;0;{bw:.1f}" keyTimes="0;{d / (d + 0.9):.3f};1" '
+            f'dur="{d + 0.9:.2f}s" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1" fill="freeze"/></rect>'
+            f'</g>')
+    return out
+
+
 def render(s):
     level, pct = rank(s)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -204,6 +226,7 @@ def render(s):
     ]
     parts += rank_ring(level, pct)
     parts += stat_rows(s)
+    parts += languages(s["langs"])
     parts.append('</svg>')
     return "\n".join(parts)
 
