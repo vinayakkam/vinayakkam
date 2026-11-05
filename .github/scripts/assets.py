@@ -106,7 +106,34 @@ def hero():
     return svg(w, h, "Vinayak Kamath — Discord Bot Developer, Founder of OLIT Technologies", b)
 
 
+SECTIONS = [("about", "ABOUT", "profile.py"), ("bot", "OLIT BOT", "discord.py"),
+            ("olit", "OLIT TECHNOLOGIES", "olittechnologies.co.in"), ("stack", "TECH STACK", "toolchain"),
+            ("stats", "GITHUB STATS", "live · daily"), ("flappy", "FLAPPY OLIT", "live · hourly")]
+
+
+def section(i, title, tag):
+    """Thin section banner: index, title, ruled line with a light pulse running along it, right tag."""
+    w, h = 900, 46
+    x_line = 48 + (14 * CH + 3) * len(title) + 14  # +3 = letter-spacing
+    x_end = w - 4 - 11 * CH * (len(tag) + 4) - 14   # +4 = "[ " and " ]"
+    return svg(w, h, title.title(), [
+        f'<defs><linearGradient id="pulse"><stop offset="0" stop-color="{ACCENT}" stop-opacity="0"/>'
+        f'<stop offset=".5" stop-color="{ACCENT}"/><stop offset="1" stop-color="{ACCENT}" stop-opacity="0"/>'
+        f'</linearGradient></defs>',
+        f'<rect x="4" y="13" width="4" height="20" rx="2" fill="{RED}"/>',
+        f'<text x="18" y="29" fill="{RED}" font-size="14" font-weight="700">{i:02d}</text>',
+        f'<text x="48" y="29" fill="{TEXT}" font-size="14" font-weight="700" letter-spacing="3">{esc(title)}</text>',
+        f'<line x1="{x_line:.0f}" y1="23.5" x2="{x_end:.0f}" y2="23.5" stroke="{BORDER}"/>',
+        f'<rect x="{x_line:.0f}" y="22.5" width="80" height="2" fill="url(#pulse)">'
+        f'<animate attributeName="x" values="{x_line:.0f};{x_end - 80:.0f}" dur="4s" begin="{i * 0.4:.1f}s" '
+        f'repeatCount="indefinite"/></rect>',
+        f'<text x="{w - 4}" y="28" fill="{MUTED}" font-size="11" text-anchor="end">[ {esc(tag)} ]</text>',
+    ])
+
+
 ASSETS = {"hero.svg": hero}
+for _i, (_slug, _title, _tag) in enumerate(SECTIONS, 1):
+    ASSETS[f"section-{_slug}.svg"] = lambda i=_i, t=_title, g=_tag: section(i, t, g)
 
 if __name__ == "__main__":
     os.makedirs(OUT_DIR, exist_ok=True)
