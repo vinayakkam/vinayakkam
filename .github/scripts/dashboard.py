@@ -27,6 +27,7 @@ query($login: String!) {
     issues { totalCount }
     repositoriesContributedTo(contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) { totalCount }
     contributionsCollection {
+      contributionYears
       totalPullRequestReviewContributions
       contributionCalendar {
         totalContributions
@@ -63,6 +64,17 @@ def fetch(token):
     # All-time commit count, same source as github-readme-stats include_all_commits.
     commits = api(f"https://api.github.com/search/commits?q=author:{USER}", token)["total_count"]
     cc = u["contributionsCollection"]
+    # contributionsCollection spans at most one year, so ask for each year separately and sum.
+    years = sorted(cc["contributionYears"])
+    per_year = "\n".join(
+        f'y{y}: contributionsCollection(from: "{y}-01-01T00:00:00Z", to: "{y}-12-31T23:59:59Z") '
+        f'{{ contributionCalendar {{ totalContributions }} }}' for y in years)
+    yr = api("https://api.github.com/graphql", token,
+             {"query": f"query($login: String!) {{ user(login: $login) {{ {per_year} }} }}",
+              "variables": {"login": USER}})
+    if yr.get("errors"):
+        sys.exit(f"GraphQL error: {yr['errors']}")
+    all_time = sum(v["contributionCalendar"]["totalContributions"] for v in yr["data"]["user"].values())
     langs = {}
     for repo in u["repositories"]["nodes"]:
         for e in repo["languages"]["edges"]:
@@ -80,6 +92,8 @@ def fetch(token):
         "days": [(d["date"], d["contributionCount"])
                  for w in cc["contributionCalendar"]["weeks"] for d in w["contributionDays"]],
         "langs": langs,
+        "all_time": all_time,
+        "since": years[0] if years else datetime.now(timezone.utc).year,
     }
 
 
@@ -93,6 +107,7 @@ def demo():
                      rnd.choice([0, 0, 1, 2, 4, 6]) * burst))
     return {"stars": 15, "commits": 1512, "prs": 43, "merged": 38, "issues": 0, "reviews": 4,
             "followers": 12, "contributed": 2, "total_contrib": sum(c for _, c in days), "days": days,
+            "all_time": 3456, "since": 2021,
             "langs": {"TypeScript": 442, "Python": 159, "Rust": 149, "HTML": 144, "QML": 69, "C#": 36}}
 
 
@@ -253,6 +268,9 @@ def skyline(s, x0=30, x1=870, top=300, base=425, hmax=70):
     out.append(f'<text x="{px:.1f}" y="{base - hmax - 10}" fill="{ACCENT}" font-size="10" text-anchor="middle">'
                f'{reveal(2.4)}▲ {max(weeks)}</text>')
     out.append(f'<text x="{x0}" y="{base + 20}" fill="{MUTED}" font-size="10">52 WEEKS AGO</text>')
+    out.append(f'<text x="{(x0 + x1) / 2}" y="{base + 21}" fill="{MUTED}" font-size="11" text-anchor="middle">'
+               f'ALL-TIME <tspan fill="{ACCENT}" font-weight="700">{s["all_time"]:,}</tspan> CONTRIBUTIONS '
+               f'<tspan fill="{RED}">·</tspan> SINCE {s["since"]}</text>')
     out.append(f'<text x="{x1}" y="{base + 20}" fill="{MUTED}" font-size="10" text-anchor="end">NOW</text>')
     return out
 
